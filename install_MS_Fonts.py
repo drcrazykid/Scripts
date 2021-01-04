@@ -12,7 +12,6 @@ from argparse import ArgumentParser as AP
 
 
 os.system('sudo apt install ttf-mscorefonts-installer')
-os.system('sudo apt install ')
 
 os.system('mkdir ~/.fonts')
 os.system('wget -qO- http://plasmasturm.org/code/vistafonts-installer/vistafonts-installer | bash')
