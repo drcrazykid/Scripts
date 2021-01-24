@@ -17,5 +17,10 @@ makepkg -si
 #enable the service to allow the socket
 sudo systemctl enable --now snapd.socket
 
+echo "You will need to logout or restart your computer before running the following command"
+wait 3
+echo "sudo snap install odrive-unofficial"
+wait 5
+
 # Install odrive-unofficial
-sudo snap install odrive-unofficial
+#sudo snap install odrive-unofficial
