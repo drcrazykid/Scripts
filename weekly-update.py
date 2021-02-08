@@ -21,7 +21,15 @@ output2, err2 = p2.communicate()
 p3 = Popen(fullUpgrade_tuple,stdin=PIPE,stdout=PIPE,stderr=PIPE)
 output3, err3 = p3.communicate()
 
-os.chdir('/home/pi/Documents/update_logs')
+log_path = '/home/pi/Documents/update_logs'
+
+try:
+    os.chdir(log_path)
+
+except FileNotFoundError as e:
+    os.mkdir(log_path)
+    os.chdir(log_path)
+
 with open('Log: {}'.format(str(currentDate)),'w') as f:
     f.write('Conducted update, upgrade and full-upgrade check on '+str(currentTime)+'\n')
     f.write('\n\nUpdate Output\n'+'='*50+'\n')
