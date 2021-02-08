@@ -35,8 +35,7 @@ def setup():
         continue_response = input("Continue anyway? (y or n)")
         if continue_response in user_safe_input:
             if continue_response == user_safe_input[0]:
-                try:
-                
+                pass                
         else:
             sys.exit()
     else:
