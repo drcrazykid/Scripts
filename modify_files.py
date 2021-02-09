@@ -1,6 +1,6 @@
 #!/usr/bin/python3.7
 
-import os, subprocess, sys, re, threading, platform, basic_log
+import os, subprocess, sys, re, threading, platform
 from argparse import ArgumentParser
 
 
@@ -12,7 +12,6 @@ move_files_list = []
 run_script = 1
 user_safe_input = ["y","n","exit","quit"]
 global_new_filename_list = []
-Log = basic_log.Log_It(False)
 
 def isPath(directory):
     if os.path.exists(directory):
