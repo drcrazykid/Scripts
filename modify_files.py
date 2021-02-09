@@ -40,11 +40,11 @@ def setup():
     else:
         working_directory = os.path.abspath(opt.working_directory)
         new_dir = os.path.abspath(opt.new_dir) + '/'
-        Log.logger("[+] Working with the \'" + working_directory + "\' directory.")
-        Log.logger("[+] Files will be placed in \'" + new_dir + "\' directory.")
-        Log.logger("[+] Options:")
+        print("[+] Working with the \'" + working_directory + "\' directory.")
+        print("[+] Files will be placed in \'" + new_dir + "\' directory.")
+        print("[+] Options:")
         for item in user_safe_input:
-            Log.logger("\t[*] " + item)
+            print("\t[*] " + item)
     if new_dir == '':
         new_dir = working_directory
     
@@ -59,29 +59,29 @@ def findText(textToLookFor):
     if textToLookFor == '':
         for item in file_list:
             if re.search('^\.',item):
-                Log.logger("Removed: '"+ item +"'")
+                print("Removed: '"+ item +"'")
                 file_list.remove(item)
         searchList = file_list
-        Log.logger("There are " + str(len(searchList)) + " files in the current directory.")
+        print("There are " + str(len(searchList)) + " files in the current directory.")
 
     else:
         for item in file_list:
             if re.search('^\.',item):
-                Log.logger("Removed: '"+ item +"'")
+                print("Removed: '"+ item +"'")
                 file_list.remove(item)
             if re.search(textToLookFor,item,re.IGNORECASE):
                 x+=1
                 searchList.append(item)
-    Log.logger("Found: "+ str(x) +" files matching your criteria.(" + str(len(file_list))+") files.")
-    Log.logger("-------------------Matching List-------------------\n")
+    print("Found: "+ str(x) +" files matching your criteria.(" + str(len(file_list))+") files.")
+    print("-------------------Matching List-------------------\n")
     
     if len(searchList) < 15:
         for item in searchList:
-            Log.logger(item)
+            print(item)
     else:
         for x in range(10):
-            Log.logger(searchList[x])
-        Log.logger(str(len(searchList) - 10) + ' item(s) also meet search criteria')
+            print(searchList[x])
+        print(str(len(searchList) - 10) + ' item(s) also meet search criteria')
     return searchList
 
 def modifyFile(files_list, textToremove):
@@ -100,7 +100,7 @@ def modifyFile(files_list, textToremove):
             confirmChange = prompt("'Is this correct '"+new_filename+"'? (y/n) ")
             if confirmChange == user_safe_input[0]:
                 os.rename(fileToModify, new_filename + old_file_ext)
-                Log.logger("Old: "+ str(fileToModify) + "\nNew: "+ new_filename + old_file_ext + '\n')
+                print("Old: "+ str(fileToModify) + "\nNew: "+ new_filename + old_file_ext + '\n')
                 move_files_list.append(working_directory + '/' + new_filename+old_file_ext)
                 global_new_filename_list.append(new_filename + old_file_ext)
             else:
@@ -108,12 +108,12 @@ def modifyFile(files_list, textToremove):
                 confirmChange = prompt("'Is this correct '" + new_filename + "'? (y/n) ")
                 if confirmChange == user_safe_input[0]:
                     os.rename(fileToModify, new_filename + old_file_ext)
-                    Log.logger("Old: " + fileToModify + "\nNew: " + new_filename + old_file_ext + '\n')
+                    print("Old: " + fileToModify + "\nNew: " + new_filename + old_file_ext + '\n')
                     move_files_list.append(working_directory + '/' + new_filename+old_file_ext)
                     global_new_filename_list.append(new_filename + old_file_ext)
                     
                 else:
-                    Log.logger("Moving on...")
+                    print("Moving on...")
             if prompt("Do you want to continue? ") == user_safe_input[1]:
                 move_files(move_files_list)
                 break
@@ -123,7 +123,7 @@ def prompt(message):
 
     user_response = input(message)
     if user_response == user_safe_input[2] or user_response == user_safe_input[3]:
-        Log.logger('met quitting criteria')
+        print('met quitting criteria')
         run_script = 0
         sys.exit()
 
@@ -136,16 +136,16 @@ def move_files(alist):
     for file in alist:
         temp_dict[x] = file
         x +=1
-    Log.logger("Moving " + str(x) + " file(s) to '" + new_dir + "'")
+    print("Moving " + str(x) + " file(s) to '" + new_dir + "'")
    
-    Log.logger("Sample")
+    print("Sample")
     for filename_no in range(len(global_new_filename_list)):
         old_file = temp_dict[filename_no]
-        Log.logger("Old location: " + temp_dict[filename_no])
+        print("Old location: " + temp_dict[filename_no])
         new_file = new_dir + global_new_filename_list[filename_no]
-        Log.logger("New location: " + new_file)
+        print("New location: " + new_file)
         os.rename(old_file, new_file)
-        Log.logger("Move Complete!")
+        print("Move Complete!")
             
 
 def main():
@@ -164,7 +164,7 @@ def main():
             pass
     
         elif modify_prompt == user_safe_input[2] or modify_prompt == user_safe_input[3]:
-            Log.logger("You are exiting the script now. Goodbye!")
+            print("You are exiting the script now. Goodbye!")
             run_script = 0
 
 if __name__ == "__main__":
