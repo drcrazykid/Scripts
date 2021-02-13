@@ -27,8 +27,10 @@ class Dice():
 
     def showDice(self):
         # print("Name:",self.type,"\nLevel:",self.level,"\nCost:",self.cost)
-        print(self.__dict__)
-    
+        tempDice = self.__dict__
+        tempDice.pop('typeDict')
+        print(tempDice)
+        
 
 
 x = 0
