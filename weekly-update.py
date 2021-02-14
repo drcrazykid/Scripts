@@ -1,7 +1,7 @@
 #!/usr/bin/python3
+# Last updated: 14 Feb 2021
+# Author: CJ
 
-# 
-# Updating Debian Based Linux
 import os,sys,subprocess, platform, getpass
 from subprocess import Popen, PIPE
 from datetime import datetime as dt
