@@ -8,10 +8,12 @@ from datetime import datetime as dt
 
 
 def osCheck():
+    # Function to determine the OS version running this script. Returns True if running on linux and will exit the script if
+    # on Windows. 
     if platform.platform().__contains__('linux'):
         return True
     else:
-        print("Script not designed for Windows OS.\nExiting...")
+        print("[-] The OS is Windows and the script is not designed for Windows OS.\nExiting...")
         sys.exit()
 
 
@@ -22,21 +24,18 @@ def moduleCheck(isLinux):
             import distro
         except ModuleNotFoundError:
             
+            print("[+] Installing python3 'Distro' module...")
             subprocess.call(["python3", "pip", "-m", "pip", "install", "distro"])
-            currentDistro = distro.linux_distribution()[0]
+            currentDistro = distro.linux_distribution()[0].lower()
+
         finally:
+
+            print("[+] Installing python3 'Distro' module...")
             subprocess.call(["python3", "pip", "-m", "pip", "install", "distro"])
             currentDistro = distro.linux_distribution()[0].lower() 
 
         return currentDistro
 
-def piHoleCheck():
-
-    num, result = subprocess.getstatusoutput('pihole')
-    if num == 0:
-        return True
-    else:
-        return False
 
 
 
@@ -50,9 +49,21 @@ class DistroVersion():
             if dis.__contains__(distro):
                 self.distro = dis
                 break
-            
+
+        # To hold the generated tuples list    
         self.tuple_list =[]
+
+        # Following variables for holding the outputs and errors of running the commands
+        self.outputList = []
+        self.errList = []
     
+    def piHoleCheck(self):
+        num, result = subprocess.getstatusoutput('pihole')
+        if num == 0:
+            return True
+        else:
+            return False
+
     def generateTuples(self):
         
         if self.distro == 'debian' or 'raspbian':
@@ -60,45 +71,65 @@ class DistroVersion():
             self.tuple_list.append(('sudo','apt','upgrade','-y'))
             self.tuple_list.append(('sudo','apt','full-upgrade','-y'))
 
-        
         elif self.distro == 'arch':
-            self.tuple_list.append(('sudo', 'pacman', '-Syu'))
+            self.tuple_list.append(('sudo', 'pacman', '-Syu','--noconfirm'))
         
         elif self.distro == 'centos':
-            self.tuple_list.append(('sudo', 'dnf', 'upgrade'))
+            self.tuple_list.append(('sudo', 'dnf', 'upgrade','-y'))
 
-        
         else:
-            print("Was unable to determing the distribution. Exiting...")
+            print("[-] Was unable to determine the distribution. Exiting...")
+            print("[-] The determined distribution was: '" + self.distro + "'.")
+            print("[-] You must modify the script in order for it to function.")
+            print("[-] Exiting...")
             sys.exit()
+        
+        if self.piHoleCheck():
+            self.tuple_list.append(('sudo','pihole','-up'))
 
     def runTuples(self):
+        self.outputList = []
+        self.errList = []
 
-        
-
-        #conditional if debian run three tuples
-        #conditional if arch run one tuple
-        #if redhat-based run # tuples
-        # or
         for tup in self.tuple_list:
+            proc = Popen(tup,stdin=PIPE, stout=PIPE, stderr=PIPE)
+            output, err = proc.communicate()
+
+            self.outputList.append({str(tup).replace("'","").replace(",",""):output.decode('utf-8')})
+            self.errList.append(err)
             #transcripe main p#s 
             pass
-        pass
 
-# Add in support to handle different managers: apt, pacman, yum, dnf, etc.
+    def createLogFile(self):
+        # creates a log file
+        
+        # Gets user running the script
+        user = getpass.getuser()
+        # Path to where the log files will be saved
+        log_path = "/home/" + user + "/Documents/update_logs"
+        
+        # Gets the current date and time for logging the data
+        currentTime = dt.now()
+        currentDate = dt.date(dt.now())
+        
+        try:
+            os.chdir(log_path)
 
-def main():
+        except FileNotFoundError as e:
+            os.mkdir(log_path)
+            os.chdir(log_path)
 
-    osResult = osCheck()
+        with open('Log: {}'.format(str(currentDate)),'w') as f:
+            
+            f.write('Conducted upgrade check on '+str(currentTime)+'\n')
+            
+            for output in self.outputList:
+                for command, log in output.items():
+                    f.write("Command run:", command + "\n")
+                    f.write(log)
 
-    linux_distro = moduleCheck(osResult)
+def old():
 
-    # print(piHoleCheck)
-
-    thisDistro = DistroVersion(linux_distro)
-    
-    thisDistro.generateTuples()
-    
     currentTime = dt.now()
     currentDate = dt.date(dt.now())
 
@@ -153,6 +184,24 @@ def main():
         if piHoleCheck():
             f.write('\n\nPihole Upadte/Upgrade Output\n' + '='*50+'\n')
             f.write(output4.decode('utf-8'))
+
+def main():
+
+
+    osResult = osCheck()
+
+    linux_distro = moduleCheck(osResult)
+
+
+
+    thisDistro = DistroVersion(linux_distro)
+    
+    thisDistro.generateTuples()
+
+    thisDistro.runTuples()
+
+    thisDistro.createLogFile()
+    
 
 if __name__ == "__main__":
     main()
