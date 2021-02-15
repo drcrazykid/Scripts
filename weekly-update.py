@@ -22,7 +22,7 @@ def moduleCheck(isLinux):
     if isLinux:
         try:
             import distro
-        except ModuleNotFoundError:
+        except:
             
             print("[+] Installing python3 'Distro' module...")
             subprocess.call(["python3", "pip", "-m", "pip", "install", "distro"])
