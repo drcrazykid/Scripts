@@ -2,7 +2,7 @@
 # Last updated: 14 Feb 2021
 # Author: CJ
 
-import os,sys,subprocess, platform, getpass
+import os,sys,subprocess, platform, getpass, time
 from subprocess import Popen, PIPE
 from datetime import datetime as dt
 
@@ -25,7 +25,9 @@ def moduleCheck(isLinux):
         except:
             
             print("[+] Installing python3 'Distro' module...")
-            subprocess.run(["python3", "-m", "pip", "install", "distro"])
+            proc = Popen(("python3", "-m", "pip", "install", "distro"),stdin=PIPE, stdout=PIPE, stderr=PIPE)
+            output, err = proc.communicate()
+            time.sleep(5)
             import distro
             currentDistro = distro.linux_distribution()[0].lower()
 
