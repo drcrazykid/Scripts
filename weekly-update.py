@@ -11,6 +11,7 @@ def osCheck():
     # Function to determine the OS version running this script. Returns True if running on linux and will exit the script if
     # on Windows. 
     if platform.platform().__contains__('linux') or platform.platform().__contains__('Linux'):
+        print("[+] Running on Linux...")
         return True
     else:
         print("[-] The OS is Windows and the script is not designed for Windows OS.\nExiting...")
@@ -28,7 +29,9 @@ def moduleCheck(isLinux):
             sys.exit()    
 
         finally:
+            print("[+] Python has the required modules...")
             currentDistro = distro.linux_distribution()[0].lower()
+            print("[+] Script running on {}".format(currentDistro))
             # print("[+] Installing python3 'Distro' module...")
             # subprocess.call(["python3", "pip", "-m", "pip", "install", "distro"])
             # currentDistro = distro.linux_distribution()[0].lower() 
@@ -38,16 +41,19 @@ def moduleCheck(isLinux):
 
 
 
-class DistroVersion():
-    def __init___(self, distro='debian'):
+class DistroVersion:
+    def __init__(self, selectedDistro):
         
-        self.distroList = ['debian', 'arch', 'centos', 'raspbian']
+        self.specificDistro = selectedDistro
+        self.distroList = ['debian', 'arch', 'garuda', 'centos', 'raspbian']
         
         for dis in self.distroList:
 
-            if dis.__contains__(distro):
-                self.distro = dis
+            if selectedDistro.lower().__contains__(dis):
+                self.specificDistro = dis
                 break
+            
+                
 
         # To hold the generated tuples list    
         self.tuple_list =[]
@@ -65,20 +71,20 @@ class DistroVersion():
 
     def generateTuples(self):
         
-        if self.distro == 'debian' or 'raspbian':
+        if self.specificDistro == 'debian' or self.specificDistro == 'raspbian':
             self.tuple_list.append(('sudo', 'apt', 'update'))
             self.tuple_list.append(('sudo','apt','upgrade','-y'))
             self.tuple_list.append(('sudo','apt','full-upgrade','-y'))
 
-        elif self.distro == 'arch':
+        elif self.specificDistro == 'arch' or self.specificDistro == 'garuda':
             self.tuple_list.append(('sudo', 'pacman', '-Syu','--noconfirm'))
         
-        elif self.distro == 'centos':
+        elif self.specificDistro == 'centos':
             self.tuple_list.append(('sudo', 'dnf', 'upgrade','-y'))
 
         else:
             print("[-] Was unable to determine the distribution. Exiting...")
-            print("[-] The determined distribution was: '" + self.distro + "'.")
+            print("[-] The determined distribution was: '" + self.specificDistro + "'.")
             print("[-] You must modify the script in order for it to function.")
             print("[-] Exiting...")
             sys.exit()
@@ -86,12 +92,18 @@ class DistroVersion():
         if self.piHoleCheck():
             self.tuple_list.append(('sudo','pihole','-up'))
 
+        print("[+] Generating the necessary tuples...")
+        for tup in self.tuple_list:
+            print(str(tup).replace(",",""))
+
     def runTuples(self):
         self.outputList = []
         self.errList = []
 
+        # There is an issue when the user needs to enter their password. may need to not "background" the subprocesses
+        print("[+] Running the generated commands")
         for tup in self.tuple_list:
-            proc = Popen(tup,stdin=PIPE, stout=PIPE, stderr=PIPE)
+            proc = Popen(tup,stdin=PIPE, stdout=PIPE, stderr=PIPE)
             output, err = proc.communicate()
 
             self.outputList.append({str(tup).replace("'","").replace(",",""):output.decode('utf-8')})
@@ -114,83 +126,31 @@ class DistroVersion():
         try:
             os.chdir(log_path)
 
-        except FileNotFoundError as e:
+        except FileNotFoundError:
             os.mkdir(log_path)
             os.chdir(log_path)
 
-        with open('Log: {}'.format(str(currentDate)),'w') as f:
-            
-            f.write('Conducted upgrade check on '+str(currentTime)+'\n')
-            
-            for output in self.outputList:
-                for command, log in output.items():
-                    f.write("Command run:", command + "\n")
-                    f.write(log)
-
-def old():
-
-    currentTime = dt.now()
-    currentDate = dt.date(dt.now())
-
-    #thisDistro.runTuples()
-
-    update_tuple = ('sudo', 'apt', 'update')
-    upgrade_tuple = ('sudo','apt','upgrade','-y')
-    fullUpgrade_tuple = ('sudo','apt','full-upgrade','-y')
-
-    # For Updating pihole
-    if piHoleCheck():
-        piHole_tuple = ('sudo','pihole','-up')
+        try:
+            with open('Log: {}'.format(str(currentDate)),'w') as f:
+                
+                f.write('Conducted upgrade check on '+str(currentTime)+'\n')
+                
+                for output in self.outputList:
+                    for command, log in output.items():
+                        f.write("Command run: "+
+                        
+                        command + "\n")
+                        f.write(log)
+        except:
+            print("[-] Cannont generate log output")
+            sys.exit()        
 
 
-    p1 = Popen(update_tuple,stdin=PIPE,stdout=PIPE,stderr=PIPE)
-    output1, err1 = p1.communicate()
-
-    p2 = Popen(upgrade_tuple,stdin=PIPE,stdout=PIPE,stderr=PIPE)
-    output2, err2 = p2.communicate()
-
-    p3 = Popen(fullUpgrade_tuple,stdin=PIPE,stdout=PIPE,stderr=PIPE)
-    output3, err3 = p3.communicate()
-
-    # For updating pihole
-    if piHoleCheck():
-        p4 = Popen(piHole_tuple,stdin=PIPE,stdout=PIPE,stderr=PIPE)
-        output4, err4 = p4.communicate()
-
-    user = getpass.getuser()
-    log_path = "/home/" + user + "/Documents/update_logs"
-
-    try:
-        os.chdir(log_path)
-
-    except FileNotFoundError as e:
-        os.mkdir(log_path)
-        os.chdir(log_path)
-
-    with open('Log: {}'.format(str(currentDate)),'w') as f:
-        f.write('Conducted update, upgrade and full-upgrade check on '+str(currentTime)+'\n')
-        
-        f.write('\n\nUpdate Output\n'+'='*50+'\n')
-        f.write(output1.decode('utf-8'))
-        
-        f.write('\n\nUpgrade Output\n'+'='*50+'\n')
-        f.write(output2.decode('utf-8'))
-        
-        f.write('\n\nFull-Upgrade Output\n'+'='*50+'\n')
-        f.write(output3.decode('utf-8'))
-
-        # For updating pihole
-        if piHoleCheck():
-            f.write('\n\nPihole Upadte/Upgrade Output\n' + '='*50+'\n')
-            f.write(output4.decode('utf-8'))
 
 def main():
-
-
     osResult = osCheck()
 
     linux_distro = moduleCheck(osResult)
-
 
 
     thisDistro = DistroVersion(linux_distro)
