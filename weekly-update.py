@@ -24,15 +24,11 @@ def moduleCheck(isLinux):
             import distro
         except:
             
-            print("[+] Installing python3 'Distro' module...")
-            proc = Popen(("python3", "-m", "pip", "install", "distro"),stdin=PIPE, stdout=PIPE, stderr=PIPE)
-            output, err = proc.communicate()
-            time.sleep(5)
-            import distro
-            currentDistro = distro.linux_distribution()[0].lower()
+            print("[-] Missing the necessary module. Install python3 'Distro' module...")
+            sys.exit()    
 
         finally:
-            pass
+            currentDistro = distro.linux_distribution()[0].lower()
             # print("[+] Installing python3 'Distro' module...")
             # subprocess.call(["python3", "pip", "-m", "pip", "install", "distro"])
             # currentDistro = distro.linux_distribution()[0].lower() 
