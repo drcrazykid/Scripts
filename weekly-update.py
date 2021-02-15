@@ -25,7 +25,7 @@ def moduleCheck(isLinux):
         except:
             
             print("[+] Installing python3 'Distro' module...")
-            subprocess.call(["python3", "pip", "-m", "pip", "install", "distro"])
+            subprocess.call(["python3", "-m", "pip", "install", "distro"])
             import distro
             currentDistro = distro.linux_distribution()[0].lower()
 
