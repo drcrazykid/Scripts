@@ -10,7 +10,7 @@ from datetime import datetime as dt
 def osCheck():
     # Function to determine the OS version running this script. Returns True if running on linux and will exit the script if
     # on Windows. 
-    if platform.platform().__contains__('linux'):
+    if platform.platform().__contains__('linux') or platform.platform().__contains__('Linux'):
         return True
     else:
         print("[-] The OS is Windows and the script is not designed for Windows OS.\nExiting...")
