@@ -10,7 +10,12 @@ class MyThread (Thread):
 d = enchant.Dict("en_US")
 
 listOfLetters = []
-filename = "Test File.txt"
+
+def CreateFilename():
+    temp = input("What is the name of this file (without the extension)? ")
+    filename = temp + ".txt"
+    print("Here is your filename:",filename)
+    return filename
 
 def CreateListOfLetters(theInput):
     letters = []
@@ -35,8 +40,9 @@ def CreatePossibleWords(listOfLetters,filename):
         
         # Create a text file with all possible words
         for word in tempList:
-            with open(filename,'a+') as f:
-                f.writelines(word+"\n")
+            if d.check(word):
+                with open(filename,'a+') as f:
+                    f.writelines(word+"\n")
 
         listOfWords += tempList
         x +=1    
@@ -58,7 +64,7 @@ def CheckIfValid(word):
     if(d.check(word)):
         print(word)
 
-def CheckIfValid(wordList):
+def CheckListForValid(wordList):
     count = 0
     for word in wordList:
         if(d.check(word)):
@@ -69,14 +75,14 @@ def CheckIfValid(wordList):
 
 theInput = input("Please type the letters with no spaces: ")
 
+filename = CreateFilename()
+
 listOfLetters = CreateListOfLetters(theInput)
-
-
 
 CreatePossibleWords(listOfLetters,filename)
 
 possibleWords = ReadFromFile(filename)
 
-CheckIfValid(possibleWords)
+print(possibleWords)
 print("Complete")
 
