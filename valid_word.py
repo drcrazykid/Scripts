@@ -11,6 +11,7 @@ class MyProgram():
         self.d = enchant.Dict("en_US")
 
         self.listOfLetters = []
+        self.allWords = []
 
     def CreateFilename(self):
         temp = input("What is the name of this file (without the extension)? ")
@@ -34,21 +35,25 @@ class MyProgram():
 
     def CreatePossibleWords(self, listOfLetters,filename):
         x = 2
-        listOfWords = []
         while x < len(listOfLetters):
             print("Creating",x,"letter words")
             tempList = [''.join(comb) for comb in itertools.product(listOfLetters, repeat=x)]
+            self.allWords += tempList
             
-            # Create a text file with all possible words
-            for word in tempList:
-                if self.d.check(word):
-                    with open(filename,'a+') as f:
-                        f.writelines(word+"\n")
+            x +=1
+        # Remove Duplicates
+        self.allWords = self.RemoveDuplicates(self.allWords)    
 
-            listOfWords += tempList
-            x +=1    
-            
-        return listOfWords
+        # Create a text file with all real words according to enchant
+        for word in self.allWords:
+            if self.d.check(word):
+                self.WriteWordToFile(word,filename)
+        
+        return self.allWords
+    
+    def RemoveDuplicates(self, theList):
+        theList = list(dict.fromkeys(theList))
+        return theList
 
     def ReadFromFile(self, filename):
         listOfWords = []
@@ -72,8 +77,11 @@ class MyProgram():
                 count +=1
                 print(word)
         print(count,"valid words")
-#CreatePossibleWords(listOfLetters,"Test File.txt")
-
+    
+    def WriteWordToFile(self, word, filename):
+        with open(filename,'a+') as f:
+            f.writelines(word+"\n")
+            
 theInput = input("Please type the letters with no spaces: ")
 prog = MyProgram()
 
