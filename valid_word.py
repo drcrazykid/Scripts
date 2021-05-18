@@ -6,8 +6,9 @@ class MyThread (Thread):
     pass
 
 
-
-d = enchant.Dict("en_US")
+class MyProgram():
+    def __init__(self):
+        self.d = enchant.Dict("en_US")
 
 listOfLetters = []
 
