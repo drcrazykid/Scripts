@@ -1,5 +1,5 @@
 #!/usr/bin/python3.7
-import os, re, argparse, getpass
+import sys, os, re, argparse, getpass
 #from modify_files import *
 
 working_dir = ''
@@ -33,13 +33,18 @@ args = parser.parse_args()
 
 
 if test_op == True:
-    filename = '/home/'+user+'/Documents/sample_movie_list.txt'
-    with open(filename,'r') as f:
-        movie_list= f.readlines()
-    print(movie_list)
+    try:
+        filename = '/home/'+user+'/Documents/sample_movie_list.txt'
+        with open(filename,'r') as f:
+            movie_list= f.readlines()
+        print(movie_list)
+    except FileNotFoundError:
+        print("[-] Sample file not found\nExiting...")
+        sys.exit()
 else:
     os.chdir(working_dir)
     movie_list = sorted(os.listdir())
+
 changed_list = []
 year_search = re.compile('\d\d\d\d')
 
