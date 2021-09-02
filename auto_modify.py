@@ -17,7 +17,9 @@ def is_path(value):
         print('[-] Please input valid directory.')
         exit()
 
-def test_operations(v):
+
+# need to add in a way for user to input sample file
+def test_operations(v,):
     global test_op
     if isinstance(v,bool):
         return v
