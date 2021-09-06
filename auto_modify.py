@@ -68,7 +68,7 @@ changed_list = []
 # Unused
 year_search = re.compile('\d\d\d\d')
 
-exclude_text = ['appletv','-','\d\d\dp','1080','1080p','bluray','x264','sparks','\s{2,}','publichd','dvdrip','axxo']
+exclude_text = ['appletv','-','\d\d\dp','1080','1080p','bluray','x264','sparks','\s{2,}','ps3', 'publichd','dvdrip','axxo', 'xvid', 'tots','1337x','bdrip','ac3']
 re_compiled = []
 for item_to_exclude in exclude_text:
     re_compiled.append(re.compile(item_to_exclude, re.IGNORECASE))
@@ -78,9 +78,7 @@ def remove_text(text_to_remove,original_string):
 
 def remove_period(file):
     count_dot = file.count('.')
-    print(f'File: {file}\nDot Count:{count_dot}')
     file = file.replace('.', ' ', count_dot - 1)
-    print("File:",file)
     return file
 
 def main():
@@ -91,11 +89,11 @@ def main():
 
         for text_to_exclude in range(len(exclude_text)):
             if re.search(re_compiled[text_to_exclude], file):
-                # print(file)
+
                 file = remove_text(re.search(re_compiled[text_to_exclude], file)[0], file)
-                # print(file)
+
         file = file.replace(" .", ".")
-        #print(file)
+
         changed_list.append(file)
 
     print('Old File name \t\t\tNew File name')
