@@ -8,6 +8,7 @@ import sys, os, re, argparse, getpass
 working_dir = ''
 test_op = False
 user = getpass.getuser()
+movie_list = []
 
 def is_path(value):
     global working_dir
@@ -21,6 +22,7 @@ def is_path(value):
 # need to add in a way for user to input sample file
 def test_operations(v,):
     global test_op
+    global movie_list
     test_op = True
     if os.path.isfile(v):
         try:
