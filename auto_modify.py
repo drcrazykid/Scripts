@@ -29,7 +29,13 @@ def test_operations(v,):
             filename = v #'/home/'+user+'/Documents/sample_movie_list.txt'
             with open(filename,'r') as f:
                 movie_list= f.readlines()
-                print(movie_list)
+                
+                #print(movie_list)
+            # Creating a temp list to remove the '\n' from the text file
+            temp = []
+            for movie in movie_list:
+                temp.append(movie.replace('\n',''))
+            movie_list = temp    
         except FileNotFoundError:
             print("[-] Sample file not found\nExiting...")
             sys.exit()
