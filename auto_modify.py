@@ -21,36 +21,42 @@ def is_path(value):
 # need to add in a way for user to input sample file
 def test_operations(v,):
     global test_op
-    if isinstance(v,bool):
-        return v
-    if v.lower() in ('y','true','t','1'):
-        test_op = True
-        return True
+    test_op = True
+    if os.path.isfile(v):
+        try:
+            filename = v #'/home/'+user+'/Documents/sample_movie_list.txt'
+            with open(filename,'r') as f:
+                movie_list= f.readlines()
+                print(movie_list)
+        except FileNotFoundError:
+            print("[-] Sample file not found\nExiting...")
+            sys.exit()
     else:
-        test_op = False
-        return False
+        print("[-] Sample file not found\nExiting...")
+        sys.exit()
+    # Old code:
+    #if isinstance(v,bool):
+    #    return v
+    #if v.lower() in ('y','true','t','1'):
+    #    test_op = True
+    #    return True
+    #else:
+    #    test_op = False
+    #    return False
 
 # setup arguments
 parser = argparse.ArgumentParser()
-parser.add_argument('-t', '--test', help='activate TEST mode', type=test_operations,nargs='?', const=False, default=False)
+parser.add_argument('-t', '--test', help='activate TEST mode. give absolute path to sample file', type=test_operations,nargs='?', const=False, default=False)
 parser.add_argument('-d','--directory',help='directory to auto-correct files',type=is_path, required=False)
 args = parser.parse_args()
 
 
-if test_op == True:
-    try:
-        filename = '/home/'+user+'/Documents/sample_movie_list.txt'
-        with open(filename,'r') as f:
-            movie_list= f.readlines()
-        print(movie_list)
-    except FileNotFoundError:
-        print("[-] Sample file not found\nExiting...")
-        sys.exit()
-else:
+if test_op == False:
     os.chdir(working_dir)
     movie_list = sorted(os.listdir())
 
 changed_list = []
+# Unused
 year_search = re.compile('\d\d\d\d')
 
 exclude_text = ['appletv','-','\d\d\dp','1080','1080p','bluray','x264','sparks','\s{2,}','publichd','dvdrip']
