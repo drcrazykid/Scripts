@@ -97,7 +97,7 @@ def main():
         changed_list.append(file)
 
     print('Old File name \t\t\tNew File name')
-    print('*'*50)
+    print('*'*100)
     for x in range(len(movie_list)):
         print(movie_list[x],'\t\t', changed_list[x])
         
