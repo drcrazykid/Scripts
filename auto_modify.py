@@ -85,9 +85,9 @@ def remove_period(file):
 
 def main():
     
-    for file in movie_list:
+    for movie_file in movie_list:
         
-        remove_period(file)
+        file = remove_period(movie_file)
 
         for text_to_exclude in range(len(exclude_text)):
             if re.search(re_compiled[text_to_exclude], file):
