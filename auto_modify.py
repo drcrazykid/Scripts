@@ -67,7 +67,7 @@ changed_list = []
 # Unused
 year_search = re.compile('\d\d\d\d')
 
-exclude_text = ['appletv','-','\d\d\dp','1080','1080p','bluray','x264','sparks','\s{2,}','publichd','dvdrip']
+exclude_text = ['appletv','-','\d\d\dp','1080','1080p','bluray','x264','sparks','\s{2,}','publichd','dvdrip','axxo']
 re_compiled = []
 for item_to_exclude in exclude_text:
     re_compiled.append(re.compile(item_to_exclude, re.IGNORECASE))
@@ -77,6 +77,7 @@ def remove_text(text_to_remove,original_string):
 
 def remove_period(file):
     count_dot = file.count('.')
+    print(f'Dot Count:{count_dot}')
     file = file.replace('.', ' ', count_dot - 1)
     return file
 
