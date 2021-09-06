@@ -92,7 +92,7 @@ def main():
     print('Old File name \t\t\tNew File name')
     print('*'*50)
     for x in range(len(movie_list)):
-        print(movie_list[x], '\t', changed_list[x])
+        print(movie_list[x], changed_list[x])
         
 if __name__ == "__main__":
     main()
