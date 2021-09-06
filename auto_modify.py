@@ -77,7 +77,7 @@ def remove_text(text_to_remove,original_string):
 
 def remove_period(file):
     count_dot = file.count('.')
-    print(f'Dot Count:{count_dot}')
+    print(f'File: {file}\nDot Count:{count_dot}')
     file = file.replace('.', ' ', count_dot - 1)
     return file
 
