@@ -35,6 +35,7 @@ def test_operations(v,):
             temp = []
             for movie in movie_list:
                 temp.append(movie.replace('\n',''))
+                movie.replace('.','',)
             movie_list = temp    
         except FileNotFoundError:
             print("[-] Sample file not found\nExiting...")
@@ -79,6 +80,7 @@ def remove_period(file):
     count_dot = file.count('.')
     print(f'File: {file}\nDot Count:{count_dot}')
     file = file.replace('.', ' ', count_dot - 1)
+    print(file)
     return file
 
 def main():
