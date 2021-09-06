@@ -80,7 +80,7 @@ def remove_period(file):
     count_dot = file.count('.')
     print(f'File: {file}\nDot Count:{count_dot}')
     file = file.replace('.', ' ', count_dot - 1)
-    print(file)
+    print("File:",file)
     return file
 
 def main():
