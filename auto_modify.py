@@ -94,12 +94,14 @@ def main():
 
         file = file.replace(" .", ".")
 
+        movie_file = file
+        
         changed_list.append(file)
 
     print('Old File name \t\t\tNew File name')
     print('*'*100)
     for x in range(len(movie_list)):
-        print(movie_list[x],'\t\t', changed_list[x])
-        
+        #print(movie_list[x],'\t\t', changed_list[x])
+        print(f"{movie_list[x]:>}{changed_list[x]:<2}")
 if __name__ == "__main__":
     main()

@@ -89,6 +89,7 @@ class DistroVersion:
             print("[-] Exiting...")
             sys.exit()
         
+        
         if self.piHoleCheck():
             self.tuple_list.append(('sudo','pihole','-up'))
 
