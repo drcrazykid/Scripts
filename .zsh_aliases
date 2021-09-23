@@ -1,0 +1,5 @@
+# Aliases definitions
+# Type extra aliases below
+alias lla="ls -alh"
+alias la="ls -a"
+alias ll="ls -lh"
