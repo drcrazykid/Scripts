@@ -14,15 +14,24 @@ sudo apt install terminator git zsh
 
 cd ~/Documents
 git clone https://www.github.com/drcrazykid/Scripts
-cd Scripts
+$FOLDER=~/Documents/Scripts/
 
 # zsh customization
-bash ./install_Ohmyzsh.sh
+bash $FOLDER/install_Ohmyzsh.sh
+
 sudo echo '
 if [ -d "$HOME/.bin" ] ; then
     PATH="$HOME/bin:$PATH"
 fi' >> /etc/zsh/zprofile
 
+git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/themes/powerlevel9k
+
+echo "# Added custom theme to ohmyzsh" >> ~/.zshrc
+echo "ZSH_THEME=\"powerlevel9k/powerlevel9k\"" >> ~/.zshrc
+
+#need to add zsh-autosuggestions and zsh-syntax-highlighting repos!!!!!
+
+echo "plugins=(git zsh-autosuggestions zsh-syntax-highlighting)" >> ~/.zshrc
 
 cp ./.zsh_aliases ~/.zsh_aliases
 
