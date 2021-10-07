@@ -8,7 +8,7 @@
 
 sudo apt update
 sudo apt upgrade -y
-sudo apt install terminator git zsh
+sudo apt install terminator git zsh curl
 
 
 
@@ -38,7 +38,8 @@ cp ./.zsh_aliases ~/.zsh_aliases
 bash ./mod-vimrc.sh
 
 mkdir ~/.bin
-cp ./weekly-update.py ~/.bin/weekly-update.py
-cp ./update-all
+cp $FOLDER/weekly-update.py ~/.bin/weekly-update.py
+cp $FOLDER/update-all
 
-wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+cd ~/Downloads
+wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb ~/Downloads/google.deb
