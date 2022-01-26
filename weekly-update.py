@@ -83,11 +83,12 @@ class DistroVersion:
             self.tuple_list.append(('sudo', 'dnf', 'upgrade','-y'))
 
         else:
-            print("[-] Was unable to determine the distribution. Exiting...")
+            print("[-] Was unable to determine the distribution.")
             print("[-] The determined distribution was: '" + self.specificDistro + "'.")
             print("[-] You must modify the script in order for it to function.")
             print("[-] Exiting...")
             sys.exit()
+        
         
         if self.piHoleCheck():
             self.tuple_list.append(('sudo','pihole','-up'))

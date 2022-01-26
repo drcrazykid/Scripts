@@ -1,10 +1,14 @@
 #!/usr/bin/python3.7
-import os, re, argparse, getpass
+
+# Last Updated: 1 Sept 2021
+
+import sys, os, re, argparse, getpass
 #from modify_files import *
 
 working_dir = ''
 test_op = False
 user = getpass.getuser()
+movie_list = []
 
 def is_path(value):
     global working_dir
@@ -14,36 +18,57 @@ def is_path(value):
         print('[-] Please input valid directory.')
         exit()
 
-def test_operations(v):
+
+# need to add in a way for user to input sample file
+def test_operations(v,):
     global test_op
-    if isinstance(v,bool):
-        return v
-    if v.lower() in ('y','true','t','1'):
-        test_op = True
-        return True
+    global movie_list
+    test_op = True
+    if os.path.isfile(v):
+        try:
+            filename = v #'/home/'+user+'/Documents/sample_movie_list.txt'
+            with open(filename,'r') as f:
+                movie_list= f.readlines()
+                
+                #print(movie_list)
+            # Creating a temp list to remove the '\n' from the text file
+            temp = []
+            for movie in movie_list:
+                temp.append(movie.replace('\n',''))
+                movie.replace('.','',)
+            movie_list = temp    
+        except FileNotFoundError:
+            print("[-] Sample file not found\nExiting...")
+            sys.exit()
     else:
-        test_op = False
-        return False
+        print("[-] Sample file not found\nExiting...")
+        sys.exit()
+    # Old code:
+    #if isinstance(v,bool):
+    #    return v
+    #if v.lower() in ('y','true','t','1'):
+    #    test_op = True
+    #    return True
+    #else:
+    #    test_op = False
+    #    return False
 
 # setup arguments
 parser = argparse.ArgumentParser()
-parser.add_argument('-t', '--test', help='activate TEST mode', type=test_operations,nargs='?', const=False, default=False)
+parser.add_argument('-t', '--test', help='activate TEST mode. give absolute path to sample file', type=test_operations,nargs='?', const=False, default=False)
 parser.add_argument('-d','--directory',help='directory to auto-correct files',type=is_path, required=False)
 args = parser.parse_args()
 
 
-if test_op == True:
-    filename = '/home/'+user+'/Documents/sample_movie_list.txt'
-    with open(filename,'r') as f:
-        movie_list= f.readlines()
-    print(movie_list)
-else:
+if test_op == False:
     os.chdir(working_dir)
     movie_list = sorted(os.listdir())
+
 changed_list = []
+# Unused
 year_search = re.compile('\d\d\d\d')
 
-exclude_text = ['appletv','-','\d\d\dp','1080','1080p','bluray','x264','sparks','\s{2,}','publichd','dvdrip']
+exclude_text = ['appletv','yify','-','\d\d\dp','1080','1080p','bluray','x264','sparks','\s{2,}','ps3', 'publichd','dvdrip','axxo', 'xvid', 'tots','1337x','bdrip','ac3']
 re_compiled = []
 for item_to_exclude in exclude_text:
     re_compiled.append(re.compile(item_to_exclude, re.IGNORECASE))
@@ -58,23 +83,25 @@ def remove_period(file):
 
 def main():
     
-    for file in movie_list:
+    for movie_file in movie_list:
         
-        remove_period(file)
+        file = remove_period(movie_file)
 
         for text_to_exclude in range(len(exclude_text)):
             if re.search(re_compiled[text_to_exclude], file):
-                # print(file)
+
                 file = remove_text(re.search(re_compiled[text_to_exclude], file)[0], file)
-                # print(file)
+
         file = file.replace(" .", ".")
-        print(file)
+
+        movie_file = file
+        
         changed_list.append(file)
 
     print('Old File name \t\t\tNew File name')
-    print('*'*50)
+    print('*'*100)
     for x in range(len(movie_list)):
-        print(movie_list[x], '\t', changed_list[x])
-        
+        #print(movie_list[x],'\t\t', changed_list[x])
+        print(f"{movie_list[x]}{changed_list[x]:>8}")
 if __name__ == "__main__":
     main()
