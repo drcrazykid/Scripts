@@ -22,8 +22,8 @@ class Dice():
 
     
     def increaseLevel(self):
-        if self.level <= 7:
-            self.level = self.level = 1
+        if self.level < 7:
+            self.level = self.level + 1
 
     def showDice(self):
         # print("Name:",self.type,"\nLevel:",self.level,"\nCost:",self.cost)

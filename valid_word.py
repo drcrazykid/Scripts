@@ -42,7 +42,7 @@ class MyProgram():
             
             x +=1
         # Remove Duplicates
-        self.allWords = self.RemoveDuplicates(self.allWords)    
+        self.allWords = sorted(self.RemoveDuplicates(self.allWords))    
 
         # Create a text file with all real words according to enchant
         for word in self.allWords:
@@ -94,5 +94,7 @@ prog.CreatePossibleWords(listOfLetters,filename)
 possibleWords = prog.ReadFromFile(filename)
 
 print(possibleWords)
+
 print("Complete")
+print("Found",str(len(possibleWords)),"words.")
 
