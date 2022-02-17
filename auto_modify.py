@@ -103,5 +103,6 @@ def main():
     for x in range(len(movie_list)):
         #print(movie_list[x],'\t\t', changed_list[x])
         print(f"{movie_list[x]}{changed_list[x]:>8}")
+        
 if __name__ == "__main__":
     main()
