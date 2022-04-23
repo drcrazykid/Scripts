@@ -70,7 +70,7 @@ def write_configs():
         with open(new_config,"w") as f:
             f.write(t_configs)
     except:
-        print("[-] Unable to write ne configs.")
+        print("[-] Unable to write new configs.")
     else:
         print("[+] Successfully wrote new configs!")
 
@@ -92,7 +92,6 @@ else:
         if response == "y":
             write_configs()
 
-            write_configs()
         else:
             print("[*] Exiting...")
             sys.exit()
