@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-t_configs = "[global_config]
+t_configs = '''[global_config]
   title_transmit_bg_color = "#204a87"
   title_inactive_bg_color = "#729fcf"
   suppress_multiple_term_dialog = True
@@ -22,4 +22,6 @@ t_configs = "[global_config]
     [[[child1]]]
       type = Terminal
       parent = window0
-[plugins]"
+[plugins]'''
+
+print(t_configs)
