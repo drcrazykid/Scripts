@@ -3,10 +3,10 @@ import os
 
 
 
-print(wos.path.abspath(os.curdir))
 
+print(os.listdir())
 # list of things to remove 'axxo'
-remove_list = []
+remove_list = ['']
 
 
 # get the folder location to do the automatic name changes

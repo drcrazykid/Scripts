@@ -43,15 +43,7 @@ def test_operations(v,):
     else:
         print("[-] Sample file not found\nExiting...")
         sys.exit()
-    # Old code:
-    #if isinstance(v,bool):
-    #    return v
-    #if v.lower() in ('y','true','t','1'):
-    #    test_op = True
-    #    return True
-    #else:
-    #    test_op = False
-    #    return False
+   
 
 # setup arguments
 parser = argparse.ArgumentParser()
