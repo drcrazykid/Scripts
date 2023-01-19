@@ -60,7 +60,9 @@ changed_list = []
 # Unused
 year_search = re.compile('\d\d\d\d')
 
-exclude_text = ['appletv','yify','-','\d\d\dp','1080','1080p','bluray','x264','sparks','\s{2,}','ps3', 'publichd','dvdrip','axxo', 'xvid', 'tots','1337x','bdrip','ac3']
+exclude_text = [
+    'appletv','yify','-','\d\d\dp','1080','1080p','bluray','x264','sparks',
+    '\s{2,}','ps3', 'publichd','dvdrip','axxo', 'xvid', 'tots','1337x','bdrip','ac3']
 re_compiled = []
 
 for item_to_exclude in exclude_text:
