@@ -1,3 +1,4 @@
+import pandas
 
 class Character():
     
@@ -8,9 +9,20 @@ class Character():
     food = 100
     
     name = ""
+    
+    def __init__(self,name = ""):
+        if name == "":
+            name = self.pull_random_name()
+        else:
+            self.name = name
 
-    def __init__(self,name):
-        self.name = name
+    def pull_random_name(self):
+        data = pandas.read_csv('C:/Users/CJ/iCloudDrive/GitHub/Scripts/Random/names_list.csv')
+        data_dict = data.to_dict()
+        
+        print(data_dict['year'].keys())
+        #print(data_dict['name'])
+        print(data_dict[1])
 
     def display(self):
         print(self.name,"\n",self.energy,"\n",self.food)
@@ -38,3 +50,8 @@ class Character():
         self.food += num
         self.display()
 
+def main():
+    test = Character()
+    
+if __name__ == "__main__":
+    main()
