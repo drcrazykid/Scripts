@@ -9,10 +9,10 @@ def on_release(key):
             return False
 
 def main():
-    
+    test = Character()
 
-    with Listener(on_press=on_press, on_release=on_release) as listener:
-        listener.join()
+    # with Listener(on_press=on_press, on_release=on_release) as listener:
+    #     listener.join()
 
 if __name__ == "__main__":
     main()
