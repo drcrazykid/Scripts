@@ -5,7 +5,7 @@ from tkinter import *
 
 # Global Variables
 LOG_BUFFER_STRINGS:list
-print(type(platform.system()))
+if platform.system().contain
 def get_dateandtime():
     
     now = dt.datetime.now()
