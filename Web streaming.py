@@ -12,11 +12,13 @@ from http import server
 PAGE="""\
 <html>
 <head>
-<title>Raspberry Pi - Surveillance Camera</title>
+<title>Raspberry Pi - Prusa MK4 Camera</title>
 </head>
 <body>
-<center><h1>Raspberry Pi - Surveillance Camera</h1></center>
+<center><h1>Raspberry Pi - Prusa MK4 Camera</h1></center>
 <center><img src="stream.mjpg" width="640" height="480"></center>
+<h1><center><a href="https://connect.prusa3d.com/printer/20551e13-3365-4d41-bfd4-77925271682b/dashboard">Prusa Connect</a></center>
+<center><a href="http://192.168.10.70/">PrusaLink</a></center></h1>
 </body>
 </html>
 """
