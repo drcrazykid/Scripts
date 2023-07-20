@@ -5,7 +5,7 @@
 # Date 18 July 2023
 
 import io
-import picamera2
+from picamera2 import Picamera2
 import logging
 import socketserver
 from threading import Condition
@@ -84,15 +84,17 @@ class StreamingHandler(server.BaseHTTPRequestHandler):
 class StreamingServer(socketserver.ThreadingMixIn, server.HTTPServer):
     allow_reuse_address = True
     daemon_threads = True
+# OLD 32-BIT VERSION
+# with picamera.Picamera(resolution='1280x720', framerate=24) as camera:
+#     output = StreamingOutput()
+#     #Uncomment the next line to change your Pi's Camera rotation (in degrees)
+#     #camera.rotation = 90
+#     camera.start_recording(output, format='mjpeg')
 
-with picamera2.PiCamera(resolution='1280x720', framerate=24) as camera:
-    output = StreamingOutput()
-    #Uncomment the next line to change your Pi's Camera rotation (in degrees)
-    #camera.rotation = 90
-    camera.start_recording(output, format='mjpeg')
-    try:
-        address = ('', 8000)
-        server = StreamingServer(address, StreamingHandler)
-        server.serve_forever()
-    finally:
-        camera.stop_recording()
+
+try:
+    address = ('', 8000)
+    server = StreamingServer(address, StreamingHandler)
+    server.serve_forever()
+finally:
+    camera.stop_recording()
