@@ -7,14 +7,13 @@
 import io
 import logging
 import socketserver
+import libcamera
 from http import server
 from threading import Condition
-import libcamera
 
 from picamera2 import Picamera2
 from picamera2.encoders import JpegEncoder
 from picamera2.outputs import FileOutput
-
 
 PAGE = """\
 <html>
@@ -26,6 +25,7 @@ PAGE = """\
 <center><img src="stream.mjpg" width="640" height="480"></center>
 <h1><center><a href="https://connect.prusa3d.com/printer/20551e13-3365-4d41-bfd4-77925271682b/dashboard">Prusa Connect</a></center>
 <center><a href="http://192.168.10.70/">PrusaLink</a></center></h1>
+<center><iframe src="http://192.168.10.70/" width="2400" height="800"></iframe></center>
 </body>
 </html>
 """
@@ -88,10 +88,10 @@ class StreamingServer(socketserver.ThreadingMixIn, server.HTTPServer):
 
 
 picam2 = Picamera2()
-picam2.configure(picam2.create_video_configuration(main={"size": (640, 480)}))
+vid_config = picam2.create_video_configuration(main={"size": (640, 480)})
+picam2.configure(vid_config)
 output = StreamingOutput()
 picam2.start_recording(JpegEncoder(), FileOutput(output))
-
 try:
     address = ('', 8000)
     server = StreamingServer(address, StreamingHandler)
