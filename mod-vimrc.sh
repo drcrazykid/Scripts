@@ -39,3 +39,6 @@ echo "map <F3> i#!/usr/bin/python3" >> ~/.vimrc
 echo "map <F4> o#This file was created on <ESC>:r!date '+\%d \%b \%y'<ESC>kJ" >> ~/.vimrc
 
 
+echo "[+] Added key shortcuts to vim config file"
+echo "[+] Complete!"
+
