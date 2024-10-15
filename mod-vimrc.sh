@@ -59,8 +59,16 @@ echo "nnoremap <F8> zm" >> ~/.vimrc
 echo "vnoremap <F8> zm" >> ~/.vimrc
 
 echo "hi ipaddr ctermfg=white ctermbg=darkred cterm=bold" >> ~/.vimrc
+
+
 echo "hi localhost ctermfg=white ctermbg=darkred cterm=bold" >> ~/.vimrc
+
+echo "autocmd BufReadPost,BufNewFile * call matchadd('localhost', '\v(127\.0\.0\.1|::1)')" >> ~/.vimrc
+
+
 echo "hi comments ctermfg=green ctermbg=black cterm=bold" >> ~/.vimrc
+
+echo "autocmd BufReadPost,BufNewFile * call matchadd('comments', '\v^#')" >> ~/.vimrc
 
 
 echo "[+] Added key shortcuts to vim config file"
