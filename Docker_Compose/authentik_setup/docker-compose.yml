@@ -76,7 +76,7 @@ services:
       - ./certs:/certs
       - ./custom-templates:/templates
     env_file:
-      - .env
+      - /home/drcrazykid/authentik/.env:.env
     depends_on:
       postgresql:
         condition: service_healthy
