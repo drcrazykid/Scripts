@@ -4,4 +4,8 @@ global:
 log:
   level: DEBUG
 api:
-  dashboard:
+  dashboard: true
+  insecure: true
+entryPoints:
+  web:
+    address: 82
