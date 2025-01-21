@@ -1,0 +1,14 @@
+services:
+  homepage:
+    image: ghcr.io/gethomepage/homepage:latest
+    container_name: homepage
+    ports:
+      - 3000:3000
+    volumes:
+      - /home/drcrazykid/docker_data/homepage/config:/app/config # Make sure your local config directory exists
+      - /home/drcrazykid/docker_data/homepage/images:/app/public/images
+      - /home/drcrazykid/docker_data/homepage/icons:/app/public/icons
+    environment:
+      PUID: $PUID
+      PGID: $PGID
+    restart: unless-stopped
