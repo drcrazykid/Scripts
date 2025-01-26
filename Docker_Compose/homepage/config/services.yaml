@@ -1,0 +1,32 @@
+---
+# For configuration options and examples, please see:
+# https://gethomepage.dev/configs/services/
+
+- Networking:
+  - Pihole:
+        href: http://pihole.casa-blanco.org/admin
+        description:
+        icon: si-pihole
+  - Guacamole:
+        href: http://guac.casa-blanco.org/#
+        icon: si-apacheguacamole
+- Security:
+  - Authentik:
+        href: https://authentik.casa-blanco.org
+        description: Open Auth, OpenID, SSO service
+        icon: si-authentik
+
+- Monitoring:
+    - Uptime Kuma:
+        href: https://uptime.casa-blanco.org/widget
+        description: Uptime Kuma status of all services running
+        icon: si-uptimekuma
+        widget:
+          type: uptimekuma
+          url: https://uptime.casa-blanco.org
+          slug: all
+
+- My Third Group:
+    - My Third Service:
+        href: http://localhost/
+        description: Homepage is 😎

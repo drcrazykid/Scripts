@@ -1,0 +1,405 @@
+[2025-01-21T06:17:26.057Z] info: docker.yaml was copied to the config folder
+[2025-01-21T06:17:26.059Z] info: services.yaml was copied to the config folder
+[2025-01-21T06:17:26.059Z] info: bookmarks.yaml was copied to the config folder
+[2025-01-21T06:17:26.071Z] info: widgets.yaml was copied to the config folder
+[2025-01-21T06:17:26.071Z] info: custom.css was copied to the config folder
+[2025-01-21T06:17:26.072Z] info: custom.js was copied to the config folder
+[2025-01-21T06:17:26.209Z] info: kubernetes.yaml was copied to the config folder
+[2025-01-21T07:04:13.147Z] error: <httpProxy> Error calling http://uptime.casa-blanco.org/api/status-page//all...
+[2025-01-21T07:04:13.152Z] error: <httpProxy> [
+  500,
+  Error [ERR_FR_REDIRECTION_FAILURE]: Redirected request failed: Protocol "https:" not supported. Expected "http:"
+      at RedirectableRequest._onNativeResponse (/app/node_modules/.pnpm/follow-redirects@1.15.9/node_modules/follow-redirects/index.js:106:17)
+      at Object.onceWrapper (node:events:632:26)
+      ... 2 lines matching cause stack trace ...
+      at HTTPParser.parserOnHeadersComplete (node:_http_common:119:17)
+      at Socket.socketOnData (node:_http_client:541:22)
+      at Socket.emit (node:events:517:28)
+      at addChunk (node:internal/streams/readable:368:12)
+      at readableAddChunk (node:internal/streams/readable:341:9)
+      at Readable.push (node:internal/streams/readable:278:10) {
+    cause: TypeError [ERR_INVALID_PROTOCOL]: Protocol "https:" not supported. Expected "http:"
+        at new NodeError (node:internal/errors:405:5)
+        at new ClientRequest (node:_http_client:188:11)
+        at Object.request (node:https:366:10)
+        at RedirectableRequest._performRequest (/app/node_modules/.pnpm/follow-redirects@1.15.9/node_modules/follow-redirects/index.js:337:24)
+        at RedirectableRequest._processResponse (/app/node_modules/.pnpm/follow-redirects@1.15.9/node_modules/follow-redirects/index.js:494:8)
+        at RedirectableRequest._onNativeResponse (/app/node_modules/.pnpm/follow-redirects@1.15.9/node_modules/follow-redirects/index.js:102:12)
+        at Object.onceWrapper (node:events:632:26)
+        at ClientRequest.emit (node:events:517:28)
+        at HTTPParser.parserOnIncomingClient (node:_http_client:700:27)
+        at HTTPParser.parserOnHeadersComplete (node:_http_common:119:17) {
+      code: 'ERR_INVALID_PROTOCOL'
+    },
+    code: 'ERR_FR_REDIRECTION_FAILURE'
+  }
+]
+[2025-01-21T07:04:13.156Z] error: <httpProxy> Error calling http://uptime.casa-blanco.org/api/status-page/heartbeat//all...
+[2025-01-21T07:04:13.157Z] error: <httpProxy> [
+  500,
+  Error [ERR_FR_REDIRECTION_FAILURE]: Redirected request failed: Protocol "https:" not supported. Expected "http:"
+      at RedirectableRequest._onNativeResponse (/app/node_modules/.pnpm/follow-redirects@1.15.9/node_modules/follow-redirects/index.js:106:17)
+      at Object.onceWrapper (node:events:632:26)
+      ... 2 lines matching cause stack trace ...
+      at HTTPParser.parserOnHeadersComplete (node:_http_common:119:17)
+      at Socket.socketOnData (node:_http_client:541:22)
+      at Socket.emit (node:events:517:28)
+      at addChunk (node:internal/streams/readable:368:12)
+      at readableAddChunk (node:internal/streams/readable:341:9)
+      at Readable.push (node:internal/streams/readable:278:10) {
+    cause: TypeError [ERR_INVALID_PROTOCOL]: Protocol "https:" not supported. Expected "http:"
+        at new NodeError (node:internal/errors:405:5)
+        at new ClientRequest (node:_http_client:188:11)
+        at Object.request (node:https:366:10)
+        at RedirectableRequest._performRequest (/app/node_modules/.pnpm/follow-redirects@1.15.9/node_modules/follow-redirects/index.js:337:24)
+        at RedirectableRequest._processResponse (/app/node_modules/.pnpm/follow-redirects@1.15.9/node_modules/follow-redirects/index.js:494:8)
+        at RedirectableRequest._onNativeResponse (/app/node_modules/.pnpm/follow-redirects@1.15.9/node_modules/follow-redirects/index.js:102:12)
+        at Object.onceWrapper (node:events:632:26)
+        at ClientRequest.emit (node:events:517:28)
+        at HTTPParser.parserOnIncomingClient (node:_http_client:700:27)
+        at HTTPParser.parserOnHeadersComplete (node:_http_common:119:17) {
+      code: 'ERR_INVALID_PROTOCOL'
+    },
+    code: 'ERR_FR_REDIRECTION_FAILURE'
+  }
+]
+[2025-01-21T07:05:00.116Z] error: <httpProxy> Error calling http://uptime.casa-blanco.org/api/status-page/status/all...
+[2025-01-21T07:05:00.117Z] error: <httpProxy> [
+  500,
+  Error [ERR_FR_REDIRECTION_FAILURE]: Redirected request failed: Protocol "https:" not supported. Expected "http:"
+      at RedirectableRequest._onNativeResponse (/app/node_modules/.pnpm/follow-redirects@1.15.9/node_modules/follow-redirects/index.js:106:17)
+      at Object.onceWrapper (node:events:632:26)
+      ... 2 lines matching cause stack trace ...
+      at HTTPParser.parserOnHeadersComplete (node:_http_common:119:17)
+      at Socket.socketOnData (node:_http_client:541:22)
+      at Socket.emit (node:events:517:28)
+      at addChunk (node:internal/streams/readable:368:12)
+      at readableAddChunk (node:internal/streams/readable:341:9)
+      at Readable.push (node:internal/streams/readable:278:10) {
+    cause: TypeError [ERR_INVALID_PROTOCOL]: Protocol "https:" not supported. Expected "http:"
+        at new NodeError (node:internal/errors:405:5)
+        at new ClientRequest (node:_http_client:188:11)
+        at Object.request (node:https:366:10)
+        at RedirectableRequest._performRequest (/app/node_modules/.pnpm/follow-redirects@1.15.9/node_modules/follow-redirects/index.js:337:24)
+        at RedirectableRequest._processResponse (/app/node_modules/.pnpm/follow-redirects@1.15.9/node_modules/follow-redirects/index.js:494:8)
+        at RedirectableRequest._onNativeResponse (/app/node_modules/.pnpm/follow-redirects@1.15.9/node_modules/follow-redirects/index.js:102:12)
+        at Object.onceWrapper (node:events:632:26)
+        at ClientRequest.emit (node:events:517:28)
+        at HTTPParser.parserOnIncomingClient (node:_http_client:700:27)
+        at HTTPParser.parserOnHeadersComplete (node:_http_common:119:17) {
+      code: 'ERR_INVALID_PROTOCOL'
+    },
+    code: 'ERR_FR_REDIRECTION_FAILURE'
+  }
+]
+[2025-01-21T07:05:00.124Z] error: <httpProxy> Error calling http://uptime.casa-blanco.org/api/status-page/heartbeat/status/all...
+[2025-01-21T07:05:00.126Z] error: <httpProxy> [
+  500,
+  Error [ERR_FR_REDIRECTION_FAILURE]: Redirected request failed: Protocol "https:" not supported. Expected "http:"
+      at RedirectableRequest._onNativeResponse (/app/node_modules/.pnpm/follow-redirects@1.15.9/node_modules/follow-redirects/index.js:106:17)
+      at Object.onceWrapper (node:events:632:26)
+      ... 2 lines matching cause stack trace ...
+      at HTTPParser.parserOnHeadersComplete (node:_http_common:119:17)
+      at Socket.socketOnData (node:_http_client:541:22)
+      at Socket.emit (node:events:517:28)
+      at addChunk (node:internal/streams/readable:368:12)
+      at readableAddChunk (node:internal/streams/readable:341:9)
+      at Readable.push (node:internal/streams/readable:278:10) {
+    cause: TypeError [ERR_INVALID_PROTOCOL]: Protocol "https:" not supported. Expected "http:"
+        at new NodeError (node:internal/errors:405:5)
+        at new ClientRequest (node:_http_client:188:11)
+        at Object.request (node:https:366:10)
+        at RedirectableRequest._performRequest (/app/node_modules/.pnpm/follow-redirects@1.15.9/node_modules/follow-redirects/index.js:337:24)
+        at RedirectableRequest._processResponse (/app/node_modules/.pnpm/follow-redirects@1.15.9/node_modules/follow-redirects/index.js:494:8)
+        at RedirectableRequest._onNativeResponse (/app/node_modules/.pnpm/follow-redirects@1.15.9/node_modules/follow-redirects/index.js:102:12)
+        at Object.onceWrapper (node:events:632:26)
+        at ClientRequest.emit (node:events:517:28)
+        at HTTPParser.parserOnIncomingClient (node:_http_client:700:27)
+        at HTTPParser.parserOnHeadersComplete (node:_http_common:119:17) {
+      code: 'ERR_INVALID_PROTOCOL'
+    },
+    code: 'ERR_FR_REDIRECTION_FAILURE'
+  }
+]
+[2025-01-21T07:06:31.118Z] error: <httpProxy> Error calling http://uptime.casa-blanco.org/api/status-page/all...
+[2025-01-21T07:06:31.120Z] error: <httpProxy> [
+  500,
+  Error [ERR_FR_REDIRECTION_FAILURE]: Redirected request failed: Protocol "https:" not supported. Expected "http:"
+      at RedirectableRequest._onNativeResponse (/app/node_modules/.pnpm/follow-redirects@1.15.9/node_modules/follow-redirects/index.js:106:17)
+      at Object.onceWrapper (node:events:632:26)
+      ... 2 lines matching cause stack trace ...
+      at HTTPParser.parserOnHeadersComplete (node:_http_common:119:17)
+      at Socket.socketOnData (node:_http_client:541:22)
+      at Socket.emit (node:events:517:28)
+      at addChunk (node:internal/streams/readable:368:12)
+      at readableAddChunk (node:internal/streams/readable:341:9)
+      at Readable.push (node:internal/streams/readable:278:10) {
+    cause: TypeError [ERR_INVALID_PROTOCOL]: Protocol "https:" not supported. Expected "http:"
+        at new NodeError (node:internal/errors:405:5)
+        at new ClientRequest (node:_http_client:188:11)
+        at Object.request (node:https:366:10)
+        at RedirectableRequest._performRequest (/app/node_modules/.pnpm/follow-redirects@1.15.9/node_modules/follow-redirects/index.js:337:24)
+        at RedirectableRequest._processResponse (/app/node_modules/.pnpm/follow-redirects@1.15.9/node_modules/follow-redirects/index.js:494:8)
+        at RedirectableRequest._onNativeResponse (/app/node_modules/.pnpm/follow-redirects@1.15.9/node_modules/follow-redirects/index.js:102:12)
+        at Object.onceWrapper (node:events:632:26)
+        at ClientRequest.emit (node:events:517:28)
+        at HTTPParser.parserOnIncomingClient (node:_http_client:700:27)
+        at HTTPParser.parserOnHeadersComplete (node:_http_common:119:17) {
+      code: 'ERR_INVALID_PROTOCOL'
+    },
+    code: 'ERR_FR_REDIRECTION_FAILURE'
+  }
+]
+[2025-01-21T07:06:31.135Z] error: <httpProxy> Error calling http://uptime.casa-blanco.org/api/status-page/heartbeat/all...
+[2025-01-21T07:06:31.136Z] error: <httpProxy> [
+  500,
+  Error [ERR_FR_REDIRECTION_FAILURE]: Redirected request failed: Protocol "https:" not supported. Expected "http:"
+      at RedirectableRequest._onNativeResponse (/app/node_modules/.pnpm/follow-redirects@1.15.9/node_modules/follow-redirects/index.js:106:17)
+      at Object.onceWrapper (node:events:632:26)
+      ... 2 lines matching cause stack trace ...
+      at HTTPParser.parserOnHeadersComplete (node:_http_common:119:17)
+      at Socket.socketOnData (node:_http_client:541:22)
+      at Socket.emit (node:events:517:28)
+      at addChunk (node:internal/streams/readable:368:12)
+      at readableAddChunk (node:internal/streams/readable:341:9)
+      at Readable.push (node:internal/streams/readable:278:10) {
+    cause: TypeError [ERR_INVALID_PROTOCOL]: Protocol "https:" not supported. Expected "http:"
+        at new NodeError (node:internal/errors:405:5)
+        at new ClientRequest (node:_http_client:188:11)
+        at Object.request (node:https:366:10)
+        at RedirectableRequest._performRequest (/app/node_modules/.pnpm/follow-redirects@1.15.9/node_modules/follow-redirects/index.js:337:24)
+        at RedirectableRequest._processResponse (/app/node_modules/.pnpm/follow-redirects@1.15.9/node_modules/follow-redirects/index.js:494:8)
+        at RedirectableRequest._onNativeResponse (/app/node_modules/.pnpm/follow-redirects@1.15.9/node_modules/follow-redirects/index.js:102:12)
+        at Object.onceWrapper (node:events:632:26)
+        at ClientRequest.emit (node:events:517:28)
+        at HTTPParser.parserOnIncomingClient (node:_http_client:700:27)
+        at HTTPParser.parserOnHeadersComplete (node:_http_common:119:17) {
+      code: 'ERR_INVALID_PROTOCOL'
+    },
+    code: 'ERR_FR_REDIRECTION_FAILURE'
+  }
+]
+[2025-01-21T07:06:31.311Z] error: <httpProxy> Error calling http://uptime.casa-blanco.org/api/status-page/all...
+[2025-01-21T07:06:31.312Z] error: <httpProxy> [
+  500,
+  Error [ERR_FR_REDIRECTION_FAILURE]: Redirected request failed: Protocol "https:" not supported. Expected "http:"
+      at RedirectableRequest._onNativeResponse (/app/node_modules/.pnpm/follow-redirects@1.15.9/node_modules/follow-redirects/index.js:106:17)
+      at Object.onceWrapper (node:events:632:26)
+      ... 2 lines matching cause stack trace ...
+      at HTTPParser.parserOnHeadersComplete (node:_http_common:119:17)
+      at Socket.socketOnData (node:_http_client:541:22)
+      at Socket.emit (node:events:517:28)
+      at addChunk (node:internal/streams/readable:368:12)
+      at readableAddChunk (node:internal/streams/readable:341:9)
+      at Readable.push (node:internal/streams/readable:278:10) {
+    cause: TypeError [ERR_INVALID_PROTOCOL]: Protocol "https:" not supported. Expected "http:"
+        at new NodeError (node:internal/errors:405:5)
+        at new ClientRequest (node:_http_client:188:11)
+        at Object.request (node:https:366:10)
+        at RedirectableRequest._performRequest (/app/node_modules/.pnpm/follow-redirects@1.15.9/node_modules/follow-redirects/index.js:337:24)
+        at RedirectableRequest._processResponse (/app/node_modules/.pnpm/follow-redirects@1.15.9/node_modules/follow-redirects/index.js:494:8)
+        at RedirectableRequest._onNativeResponse (/app/node_modules/.pnpm/follow-redirects@1.15.9/node_modules/follow-redirects/index.js:102:12)
+        at Object.onceWrapper (node:events:632:26)
+        at ClientRequest.emit (node:events:517:28)
+        at HTTPParser.parserOnIncomingClient (node:_http_client:700:27)
+        at HTTPParser.parserOnHeadersComplete (node:_http_common:119:17) {
+      code: 'ERR_INVALID_PROTOCOL'
+    },
+    code: 'ERR_FR_REDIRECTION_FAILURE'
+  }
+]
+[2025-01-21T07:06:31.316Z] error: <httpProxy> Error calling http://uptime.casa-blanco.org/api/status-page/heartbeat/all...
+[2025-01-21T07:06:31.318Z] error: <httpProxy> [
+  500,
+  Error [ERR_FR_REDIRECTION_FAILURE]: Redirected request failed: Protocol "https:" not supported. Expected "http:"
+      at RedirectableRequest._onNativeResponse (/app/node_modules/.pnpm/follow-redirects@1.15.9/node_modules/follow-redirects/index.js:106:17)
+      at Object.onceWrapper (node:events:632:26)
+      ... 2 lines matching cause stack trace ...
+      at HTTPParser.parserOnHeadersComplete (node:_http_common:119:17)
+      at Socket.socketOnData (node:_http_client:541:22)
+      at Socket.emit (node:events:517:28)
+      at addChunk (node:internal/streams/readable:368:12)
+      at readableAddChunk (node:internal/streams/readable:341:9)
+      at Readable.push (node:internal/streams/readable:278:10) {
+    cause: TypeError [ERR_INVALID_PROTOCOL]: Protocol "https:" not supported. Expected "http:"
+        at new NodeError (node:internal/errors:405:5)
+        at new ClientRequest (node:_http_client:188:11)
+        at Object.request (node:https:366:10)
+        at RedirectableRequest._performRequest (/app/node_modules/.pnpm/follow-redirects@1.15.9/node_modules/follow-redirects/index.js:337:24)
+        at RedirectableRequest._processResponse (/app/node_modules/.pnpm/follow-redirects@1.15.9/node_modules/follow-redirects/index.js:494:8)
+        at RedirectableRequest._onNativeResponse (/app/node_modules/.pnpm/follow-redirects@1.15.9/node_modules/follow-redirects/index.js:102:12)
+        at Object.onceWrapper (node:events:632:26)
+        at ClientRequest.emit (node:events:517:28)
+        at HTTPParser.parserOnIncomingClient (node:_http_client:700:27)
+        at HTTPParser.parserOnHeadersComplete (node:_http_common:119:17) {
+      code: 'ERR_INVALID_PROTOCOL'
+    },
+    code: 'ERR_FR_REDIRECTION_FAILURE'
+  }
+]
+[2025-01-21T07:06:55.455Z] error: <httpProxy> Error calling http://uptime.casa-blanco.org/api/status-page/all...
+[2025-01-21T07:06:55.457Z] error: <httpProxy> [
+  500,
+  Error [ERR_FR_REDIRECTION_FAILURE]: Redirected request failed: Protocol "https:" not supported. Expected "http:"
+      at RedirectableRequest._onNativeResponse (/app/node_modules/.pnpm/follow-redirects@1.15.9/node_modules/follow-redirects/index.js:106:17)
+      at Object.onceWrapper (node:events:632:26)
+      ... 2 lines matching cause stack trace ...
+      at HTTPParser.parserOnHeadersComplete (node:_http_common:119:17)
+      at Socket.socketOnData (node:_http_client:541:22)
+      at Socket.emit (node:events:517:28)
+      at addChunk (node:internal/streams/readable:368:12)
+      at readableAddChunk (node:internal/streams/readable:341:9)
+      at Readable.push (node:internal/streams/readable:278:10) {
+    cause: TypeError [ERR_INVALID_PROTOCOL]: Protocol "https:" not supported. Expected "http:"
+        at new NodeError (node:internal/errors:405:5)
+        at new ClientRequest (node:_http_client:188:11)
+        at Object.request (node:https:366:10)
+        at RedirectableRequest._performRequest (/app/node_modules/.pnpm/follow-redirects@1.15.9/node_modules/follow-redirects/index.js:337:24)
+        at RedirectableRequest._processResponse (/app/node_modules/.pnpm/follow-redirects@1.15.9/node_modules/follow-redirects/index.js:494:8)
+        at RedirectableRequest._onNativeResponse (/app/node_modules/.pnpm/follow-redirects@1.15.9/node_modules/follow-redirects/index.js:102:12)
+        at Object.onceWrapper (node:events:632:26)
+        at ClientRequest.emit (node:events:517:28)
+        at HTTPParser.parserOnIncomingClient (node:_http_client:700:27)
+        at HTTPParser.parserOnHeadersComplete (node:_http_common:119:17) {
+      code: 'ERR_INVALID_PROTOCOL'
+    },
+    code: 'ERR_FR_REDIRECTION_FAILURE'
+  }
+]
+[2025-01-21T07:06:55.464Z] error: <httpProxy> Error calling http://uptime.casa-blanco.org/api/status-page/heartbeat/all...
+[2025-01-21T07:06:55.465Z] error: <httpProxy> [
+  500,
+  Error [ERR_FR_REDIRECTION_FAILURE]: Redirected request failed: Protocol "https:" not supported. Expected "http:"
+      at RedirectableRequest._onNativeResponse (/app/node_modules/.pnpm/follow-redirects@1.15.9/node_modules/follow-redirects/index.js:106:17)
+      at Object.onceWrapper (node:events:632:26)
+      ... 2 lines matching cause stack trace ...
+      at HTTPParser.parserOnHeadersComplete (node:_http_common:119:17)
+      at Socket.socketOnData (node:_http_client:541:22)
+      at Socket.emit (node:events:517:28)
+      at addChunk (node:internal/streams/readable:368:12)
+      at readableAddChunk (node:internal/streams/readable:341:9)
+      at Readable.push (node:internal/streams/readable:278:10) {
+    cause: TypeError [ERR_INVALID_PROTOCOL]: Protocol "https:" not supported. Expected "http:"
+        at new NodeError (node:internal/errors:405:5)
+        at new ClientRequest (node:_http_client:188:11)
+        at Object.request (node:https:366:10)
+        at RedirectableRequest._performRequest (/app/node_modules/.pnpm/follow-redirects@1.15.9/node_modules/follow-redirects/index.js:337:24)
+        at RedirectableRequest._processResponse (/app/node_modules/.pnpm/follow-redirects@1.15.9/node_modules/follow-redirects/index.js:494:8)
+        at RedirectableRequest._onNativeResponse (/app/node_modules/.pnpm/follow-redirects@1.15.9/node_modules/follow-redirects/index.js:102:12)
+        at Object.onceWrapper (node:events:632:26)
+        at ClientRequest.emit (node:events:517:28)
+        at HTTPParser.parserOnIncomingClient (node:_http_client:700:27)
+        at HTTPParser.parserOnHeadersComplete (node:_http_common:119:17) {
+      code: 'ERR_INVALID_PROTOCOL'
+    },
+    code: 'ERR_FR_REDIRECTION_FAILURE'
+  }
+]
+[2025-01-21T07:09:34.528Z] error: Failed to load services.yaml, please check for errors
+[2025-01-21T07:09:34.528Z] error: YAMLException: bad indentation of a mapping entry (19:52)
+
+ 16 |  ... 
+ 17 |  ... 
+ 18 |  ... 
+ 19 |  ... /uptime.casa-blanco.org/widget:
+-----------------------------------------^
+ 20 |  ... Uptime Kuma status of all services running
+ 21 |  ... kuma.png
+[2025-01-21T07:09:34.534Z] error: <servicesProxy> YAMLException: bad indentation of a mapping entry (19:52)
+
+ 16 |  ... 
+ 17 |  ... 
+ 18 |  ... 
+ 19 |  ... /uptime.casa-blanco.org/widget:
+-----------------------------------------^
+ 20 |  ... Uptime Kuma status of all services running
+ 21 |  ... kuma.png
+    at generateError (file:///app/node_modules/.pnpm/js-yaml@4.1.0/node_modules/js-yaml/dist/js-yaml.mjs:1273:10)
+    at throwError (file:///app/node_modules/.pnpm/js-yaml@4.1.0/node_modules/js-yaml/dist/js-yaml.mjs:1277:9)
+    at readBlockMapping (file:///app/node_modules/.pnpm/js-yaml@4.1.0/node_modules/js-yaml/dist/js-yaml.mjs:2272:7)
+    at composeNode (file:///app/node_modules/.pnpm/js-yaml@4.1.0/node_modules/js-yaml/dist/js-yaml.mjs:2531:12)
+    at readBlockMapping (file:///app/node_modules/.pnpm/js-yaml@4.1.0/node_modules/js-yaml/dist/js-yaml.mjs:2254:11)
+    at composeNode (file:///app/node_modules/.pnpm/js-yaml@4.1.0/node_modules/js-yaml/dist/js-yaml.mjs:2531:12)
+    at readBlockSequence (file:///app/node_modules/.pnpm/js-yaml@4.1.0/node_modules/js-yaml/dist/js-yaml.mjs:2098:5)
+    at composeNode (file:///app/node_modules/.pnpm/js-yaml@4.1.0/node_modules/js-yaml/dist/js-yaml.mjs:2530:12)
+    at readBlockMapping (file:///app/node_modules/.pnpm/js-yaml@4.1.0/node_modules/js-yaml/dist/js-yaml.mjs:2254:11)
+    at composeNode (file:///app/node_modules/.pnpm/js-yaml@4.1.0/node_modules/js-yaml/dist/js-yaml.mjs:2531:12)
+[2025-01-21T07:09:34.536Z] error: <servicesProxy> YAMLException: bad indentation of a mapping entry (19:52)
+
+ 16 |  ... 
+ 17 |  ... 
+ 18 |  ... 
+ 19 |  ... /uptime.casa-blanco.org/widget:
+-----------------------------------------^
+ 20 |  ... Uptime Kuma status of all services running
+ 21 |  ... kuma.png
+    at generateError (file:///app/node_modules/.pnpm/js-yaml@4.1.0/node_modules/js-yaml/dist/js-yaml.mjs:1273:10)
+    at throwError (file:///app/node_modules/.pnpm/js-yaml@4.1.0/node_modules/js-yaml/dist/js-yaml.mjs:1277:9)
+    at readBlockMapping (file:///app/node_modules/.pnpm/js-yaml@4.1.0/node_modules/js-yaml/dist/js-yaml.mjs:2272:7)
+    at composeNode (file:///app/node_modules/.pnpm/js-yaml@4.1.0/node_modules/js-yaml/dist/js-yaml.mjs:2531:12)
+    at readBlockMapping (file:///app/node_modules/.pnpm/js-yaml@4.1.0/node_modules/js-yaml/dist/js-yaml.mjs:2254:11)
+    at composeNode (file:///app/node_modules/.pnpm/js-yaml@4.1.0/node_modules/js-yaml/dist/js-yaml.mjs:2531:12)
+    at readBlockSequence (file:///app/node_modules/.pnpm/js-yaml@4.1.0/node_modules/js-yaml/dist/js-yaml.mjs:2098:5)
+    at composeNode (file:///app/node_modules/.pnpm/js-yaml@4.1.0/node_modules/js-yaml/dist/js-yaml.mjs:2530:12)
+    at readBlockMapping (file:///app/node_modules/.pnpm/js-yaml@4.1.0/node_modules/js-yaml/dist/js-yaml.mjs:2254:11)
+    at composeNode (file:///app/node_modules/.pnpm/js-yaml@4.1.0/node_modules/js-yaml/dist/js-yaml.mjs:2531:12)
+[2025-01-21T07:09:34.543Z] error: Failed to load services.yaml, please check for errors
+[2025-01-21T07:09:34.543Z] error: YAMLException: bad indentation of a mapping entry (19:52)
+
+ 16 |  ... 
+ 17 |  ... 
+ 18 |  ... 
+ 19 |  ... /uptime.casa-blanco.org/widget:
+-----------------------------------------^
+ 20 |  ... Uptime Kuma status of all services running
+ 21 |  ... kuma.png
+[2025-01-21T07:09:34.706Z] error: Failed to load services.yaml, please check for errors
+[2025-01-21T07:09:34.706Z] error: YAMLException: bad indentation of a mapping entry (19:52)
+
+ 16 |  ... 
+ 17 |  ... 
+ 18 |  ... 
+ 19 |  ... /uptime.casa-blanco.org/widget:
+-----------------------------------------^
+ 20 |  ... Uptime Kuma status of all services running
+ 21 |  ... kuma.png
+[2025-01-21T07:09:52.560Z] error: Failed to load services.yaml, please check for errors
+[2025-01-21T07:09:52.560Z] error: YAMLException: bad indentation of a mapping entry (19:52)
+
+ 16 |  ... 
+ 17 |  ... 
+ 18 |  ... 
+ 19 |  ... /uptime.casa-blanco.org/widget:
+-----------------------------------------^
+ 20 |  ... Uptime Kuma status of all services running
+ 21 |  ... kuma.png
+[2025-01-21T07:09:52.707Z] error: Failed to load services.yaml, please check for errors
+[2025-01-21T07:09:52.707Z] error: YAMLException: bad indentation of a mapping entry (19:52)
+
+ 16 |  ... 
+ 17 |  ... 
+ 18 |  ... 
+ 19 |  ... /uptime.casa-blanco.org/widget:
+-----------------------------------------^
+ 20 |  ... Uptime Kuma status of all services running
+ 21 |  ... kuma.png
+[2025-01-21T07:11:25.855Z] error: Failed to load services.yaml, please check for errors
+[2025-01-21T07:11:25.855Z] error: YAMLException: bad indentation of a mapping entry (20:20)
+
+ 17 | - Monitoring:
+ 18 |     - Uptime Kuma:
+ 19 |       href: https://uptime.casa-blanco.org/widget
+ 20 |         description: Uptime Kuma status of all ser ...
+-------------------------^
+ 21 |         icon: uptime-kuma.png
+ 22 |         widget:
+[2025-01-21T07:11:26.007Z] error: Failed to load services.yaml, please check for errors
+[2025-01-21T07:11:26.007Z] error: YAMLException: bad indentation of a mapping entry (20:20)
+
+ 17 | - Monitoring:
+ 18 |     - Uptime Kuma:
+ 19 |       href: https://uptime.casa-blanco.org/widget
+ 20 |         description: Uptime Kuma status of all ser ...
+-------------------------^
+ 21 |         icon: uptime-kuma.png
+ 22 |         widget:
