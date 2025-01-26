@@ -62,5 +62,4 @@ bash ./install_Ohmyzsh.sh
 # Install VS Code
 bash ./install_code.sh
 
-# Change password
-sudo echo "$(whoami) ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
+
