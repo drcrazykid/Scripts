@@ -8,4 +8,4 @@ services:
       - /home/drcrazykid/docker_data/uptime-kuma/uptime-kuma-data:/app/data
     ports:
       - 3001:3001  # <Host Port>:<Container Port>
-    restart: always
+    restart: unless-stopped
