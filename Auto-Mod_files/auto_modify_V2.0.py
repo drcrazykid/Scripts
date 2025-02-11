@@ -45,13 +45,14 @@ def getfilepath(directory):
     if os.path.isdir(directory):
 
         dir = os.listdir(directory)
-        print(dir)
+        # print(dir)
         return dir
     else:
         print(f"[-] The provide path '{directory}' does not exist")
         exit()
 
 def add_orig_files_to_dict(directory):
+    global original_file_count
     for f in directory:
         original_file_count +=1
         data_dict['Original_File'].append(f)
@@ -73,16 +74,17 @@ def main():
     file_list = getfilepath(abs_path)
     
     add_orig_files_to_dict(file_list)
-    print(f"[+] There are {original}")
+    print(f"[+] There are {original_file_count} files.")
     for file in file_list:
-        print(file)
+        pass
+        # print(file)
         # for text_num in range(len(remove_text_list)):
         #     match = re.search(re_compiled[text_num], file)
         #     if match:
         #         print(re_compiled[text_num])
         #         # file = remove_text(re_compiled[text_num],file)
         #         print(f'found {file}')
-    
+    print(data_dict["Original_File"])
 
 
 main()
