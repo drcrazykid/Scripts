@@ -1,6 +1,20 @@
 #!/usr/bin/python
-import os, csv, pandas, re
+
+
+def install_modules():
+    if subprocess.call(['sudo','pip','install','re','pandas']):
+        print('[+] Successfully installed modules!')
+
+try:
+    import os, subprocess, csv, pandas, re
+except:
+    print("[-] One of the required modules is not installed: pandas/re")
+    
+    install_modules()
+
 from file_handling import FileHandler
+
+
 
 
 # Variables
@@ -25,16 +39,21 @@ re_compiled = [re.compile(item_to_exclude, re.IGNORECASE) for item_to_exclude in
 
 # get the folder location to do the automatic name changes
 
-
+original_file_count = 0
 # Functions
 def getfilepath(directory):
     if os.path.isdir(directory):
 
         dir = os.listdir(directory)
+        print(dir)
         return dir
+    else:
+        print(f"[-] The provide path '{directory}' does not exist")
+        exit()
 
 def add_orig_files_to_dict(directory):
     for f in directory:
+        original_file_count +=1
         data_dict['Original_File'].append(f)
 
 def remove_text(text_to_remove,original_string):
@@ -50,16 +69,19 @@ def create_txt_file(directory_list):
 
 
 def main():
-    file_list = getfilepath(os.getcwd())
-    add_orig_files_to_dict(file_list)
+    abs_path = input("Please input absolute path: ")
+    file_list = getfilepath(abs_path)
     
-    for file in os.listdir():
-        for text_num in range(len(remove_text_list)):
-            match = re.search(re_compiled[text_num], file)
-            if match:
-                print(re_compiled[text_num])
-                # file = remove_text(re_compiled[text_num],file)
-                print(f'found {file}')
+    add_orig_files_to_dict(file_list)
+    print(f"[+] There are {original}")
+    for file in file_list:
+        print(file)
+        # for text_num in range(len(remove_text_list)):
+        #     match = re.search(re_compiled[text_num], file)
+        #     if match:
+        #         print(re_compiled[text_num])
+        #         # file = remove_text(re_compiled[text_num],file)
+        #         print(f'found {file}')
     
 
 

@@ -79,19 +79,19 @@ def remove_period(file):
 def main():
     
     for movie_file in movie_list:
+        print(movie_file)
+        # file = remove_period(movie_file)
+
+        # for text_to_exclude in range(len(exclude_text)):
+        #     if re.search(re_compiled[text_to_exclude], file):
+
+        #         file = remove_text(re.search(re_compiled[text_to_exclude], file)[0], file)
+
+        # file = file.replace(" .", ".")
+
+        # movie_file = file
         
-        file = remove_period(movie_file)
-
-        for text_to_exclude in range(len(exclude_text)):
-            if re.search(re_compiled[text_to_exclude], file):
-
-                file = remove_text(re.search(re_compiled[text_to_exclude], file)[0], file)
-
-        file = file.replace(" .", ".")
-
-        movie_file = file
-        
-        changed_list.append(file)
+        # changed_list.append(file)
 
     print('Old File name \t\t\tNew File name')
     print('*'*100)
