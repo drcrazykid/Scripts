@@ -7,10 +7,11 @@ from file_handling import FileHandler
 
 data_dict = {
     'ID' : int(),
-    'Original_File' : [],
+    'File' : {'Original_File' : [],
     'Is Directory' : 'Y or N',
     'New_File' : [],
     'Final File' : []
+    }
 }
 
 
@@ -45,6 +46,12 @@ def add_orig_files_to_dict(directory):
 def remove_text(text_to_remove,original_string):
     return original_string.replace(text_to_remove,'')
 
+def remove_periods(original_string):
+    dot_count = original_string.count(".")
+    original_string = original_string.replace('.', ' ', dot_count - 1)
+    return original_string
+
+
 
 def create_txt_file(directory_list):
     with open('directory_listing.txt','w') as f:
@@ -56,7 +63,7 @@ def create_txt_file(directory_list):
 
 def main():
     file_list = getfilepath(os.getcwd())
-    add_orig_files_to_dict(file_list)
+    data_dict['New_File'] = add_orig_files_to_dict(file_list)
     
     for file in os.listdir():
         for text_num in range(len(remove_text_list)):
