@@ -6,9 +6,11 @@ from file_handling import FileHandler
 # Variables
 
 data_dict = {
+    'ID' : int(),
     'Original_File' : [],
     'Is Directory' : 'Y or N',
-    'New_File' : []
+    'New_File' : [],
+    'Final File' : []
 }
 
 
@@ -34,9 +36,12 @@ def getfilepath(directory):
         return dir
 
 def add_orig_files_to_dict(directory):
+    x = 1
     for f in directory:
+        data_dict['ID'] = x
         data_dict['Original_File'].append(f)
-
+        x+=1
+        
 def remove_text(text_to_remove,original_string):
     return original_string.replace(text_to_remove,'')
 
