@@ -1,19 +1,16 @@
 #!/usr/bin/python
-import os, csv, pandas, re
+import os, re,json
 from file_handling import FileHandler
 
 
 # Variables
 
 data_dict = {
-    'ID' : int(),
-    'Data':{
     'Original_File' : [],
     'Is Directory' : 'Y or N',
     'New_File' : [],
     'Final File' : []
     }
-}
 
 
 # list of things to remove example 'axxo'
@@ -37,12 +34,11 @@ def getfilepath(directory):
         dir = os.listdir(directory)
         return dir
 
-def add_orig_files_to_dict(directory):
-    x = 1
-    for f in directory:
-        data_dict['ID'] = x
+def add_orig_files_to_dict(d):
+    for f in d:
+        print(f)
+        
         data_dict['Original_File'].append(f)
-        x+=1
         
 def remove_text(text_to_remove,original_string):
     return original_string.replace(text_to_remove,'')
@@ -81,9 +77,10 @@ def main():
         for text_num in range(len(remove_text_list)):
             match = re.search(re_compiled[text_num], file)
             if match:
-                print(re_compiled[text_num])
-                # file = remove_text(re_compiled[text_num],file)
-                print(f'found {file}')
+                # print(re_compiled[text_num])
+                # # file = remove_text(re_compiled[text_num],file)
+                # print(f'found {file}')
+                pass
     
 
 
