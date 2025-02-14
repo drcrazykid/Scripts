@@ -1,6 +1,8 @@
 #!/usr/bin/python3
-# Last updated: 14 Feb 2021
+# Last updated: 13 Feb 2025
 # Author: CJ
+# Version 1.10
+
 
 import os,sys,subprocess, platform, getpass, time
 from subprocess import Popen, PIPE
@@ -9,7 +11,8 @@ from datetime import datetime as dt
 
 def osCheck():
     # Function to determine the OS version running this script. Returns True if running on linux and will exit the script if
-    # on Windows. 
+    # on Windows.
+    # perhaps I can add windows operations for winget... :/  
     if platform.platform().__contains__('linux') or platform.platform().__contains__('Linux'):
         print("[+] Running on Linux...")
         return True
@@ -26,11 +29,12 @@ def moduleCheck(isLinux):
         except:
             
             print("[-] Missing the necessary module. Install python3 'Distro' module...")
+            print("[-] Try running 'sudo apt install python3-distro'")
             sys.exit()    
 
         finally:
             print("[+] Python has the required modules...")
-            currentDistro = distro.linux_distribution()[0].lower()
+            currentDistro = distro.id().lower()
             print("[+] Script running on {}".format(currentDistro))
             # print("[+] Installing python3 'Distro' module...")
             # subprocess.call(["python3", "pip", "-m", "pip", "install", "distro"])
@@ -45,7 +49,7 @@ class DistroVersion:
     def __init__(self, selectedDistro):
         
         self.specificDistro = selectedDistro
-        self.distroList = ['debian', 'arch', 'garuda', 'centos', 'raspbian']
+        self.distroList = ['debian', 'arch', 'garuda', 'centos', 'raspbian','ubunut','fedora']
         
         for dis in self.distroList:
 
@@ -71,7 +75,7 @@ class DistroVersion:
 
     def generateTuples(self):
         
-        if self.specificDistro == 'debian' or self.specificDistro == 'raspbian':
+        if self.specificDistro == 'debian' or self.specificDistro == 'raspbian' or self.specificDistro == 'ubuntu':
             self.tuple_list.append(('sudo', 'apt', 'update'))
             self.tuple_list.append(('sudo','apt','upgrade','-y'))
             self.tuple_list.append(('sudo','apt','full-upgrade','-y'))
@@ -79,7 +83,7 @@ class DistroVersion:
         elif self.specificDistro == 'arch' or self.specificDistro == 'garuda':
             self.tuple_list.append(('sudo', 'pacman', '-Syu','--noconfirm'))
         
-        elif self.specificDistro == 'centos':
+        elif self.specificDistro == 'centos' or self.specificDistro == 'fedora':
             self.tuple_list.append(('sudo', 'dnf', 'upgrade','-y'))
 
         else:
@@ -111,6 +115,7 @@ class DistroVersion:
             self.errList.append(err)
             #transcripe main p#s 
             pass
+        print(f"[+] Commands successfully ran.\n[+] View logs at '/home/{getpass.getuser()}/Documents/update_logs' for more details")
 
     def createLogFile(self):
         # creates a log file

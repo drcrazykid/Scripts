@@ -7,10 +7,12 @@ from file_handling import FileHandler
 
 data_dict = {
     'ID' : int(),
+    'Data':{
     'Original_File' : [],
     'Is Directory' : 'Y or N',
     'New_File' : [],
     'Final File' : []
+    }
 }
 
 
@@ -51,7 +53,8 @@ def create_txt_file(directory_list):
         for file in directory_list:
             f.writelines(f'{file}\n')
 
-
+def show_dict():
+    for 
 
 
 def main():
