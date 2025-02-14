@@ -60,12 +60,22 @@ def create_txt_file(directory_list):
             f.writelines(f'{file}\n')
 
 def show_dict():
-    for 
+    for k,v in data_dict.items():
+        print(k,v) 
 
-
+isTesting = False
 def main():
-    file_list = getfilepath(os.getcwd())
-    data_dict['New_File'] = add_orig_files_to_dict(file_list)
+
+    file_path = ""
+
+    if isTesting:
+        with open('list_of_movies.txt','r') as f:
+            file_list = f.readlines()
+    else:
+        file_list = getfilepath(os.getcwd())
+    
+    add_orig_files_to_dict(file_list)
+    show_dict()
     
     for file in os.listdir():
         for text_num in range(len(remove_text_list)):
