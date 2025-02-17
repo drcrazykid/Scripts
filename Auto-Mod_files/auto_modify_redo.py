@@ -65,17 +65,21 @@ def process_it_all(directory):
 def main():
     working_dir = input("Please provide the absolute directory to begin the process: ")
     print(os.listdir(working_dir))
-
+    file_dict = {}
     if os.path.isdir(working_dir):
         os.chdir(working_dir)
-    for file in os.listdir(working_dir):
-        if os.path.isfile(file):
+    for f in os.listdir(working_dir):
+        if os.path.isfile(f):
             for r in range(len(exclude_text)):
-                if re.search(re_compiled[r],file):
-                    file = remove_text(re.search(re_compiled[r],file)[0],file)
-        file = remove_periods(file)
-        file = ' '.join(file.split())
-        print(f"Changed to: {file}")
+                if re.search(re_compiled[r],f):
+                    new_file = remove_text(re.search(re_compiled[r],f)[0],f)
+        new_file = remove_periods(new_file)
+        new_file = ' '.join(new_file.split())
+        print(f"Changed to: {new_file}")
+        file_dict[f]=new_file
+    
+    for k,v in file_dict.items():
+        os.rename(f"./{k}",f"./v")
 
 if __name__ == "__main__":
     main()
