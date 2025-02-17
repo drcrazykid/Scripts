@@ -49,10 +49,11 @@ def sample_output(input_list):
 
 
 def process_it_all(directory):
+    dir_list = [os.listdir(directory)]
     file_dict = {}
        
-    for x in range(len(directory)):
-        file_dict[x]= {directory[x]:sample_output(directory)[x]}
+    for x in range(len(dir_list)):
+        file_dict[x]= {dir_list[x]:sample_output(dir_list)[x]}
     
     for k,v in file_dict.items():
         print(k,v)
@@ -64,7 +65,9 @@ def process_it_all(directory):
 def main():
     working_dir = input("Please provide the absolute directory to begin the process: ")
     print(os.listdir(working_dir))
-    if os.listdir(working_dir):
+
+    if os.path.isdir(working_dir):
+        os.chdir(working_dir)
         sample_output(working_dir)
     
         process_it_all(working_dir)
