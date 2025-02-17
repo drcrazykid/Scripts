@@ -2,7 +2,6 @@
 
 import os,re,json
 
-working_dir = input("Please provide the absolute directory to begin the process: ")
 #for test path: C:\Users\CJ\iCloudDrive\GitHub\Scripts-2\Auto-Mod_files
 
 exclude_text = [
@@ -46,23 +45,14 @@ def sample_output(input_list):
         f = remove_periods(f)
         f = " ".join(f.split())
         new_output.append(f)
-
-    
     return new_output
 
-def rename_file(orig,new):
-    pass
 
-def main():
-
-    for x in re_compiled:
-        print(x)
-    
+def process_it_all(directory):
     file_dict = {}
-    sample_output(file_list)
-    
-    for x in range(len(file_list)):
-        file_dict[x]= {file_list[x]:sample_output(file_list)[x]}
+       
+    for x in range(len(directory)):
+        file_dict[x]= {directory[x]:sample_output(directory)[x]}
     
     for k,v in file_dict.items():
         print(k,v)
@@ -70,6 +60,14 @@ def main():
     with open("movie_data.json","w") as json_file:
         json.dump(file_dict,json_file,indent=4)
 
+
+def main():
+    working_dir = input("Please provide the absolute directory to begin the process: ")
+
+    if os.listdir(working_dir):
+        sample_output(working_dir)
+    
+        process_it_all(working_dir)
 
 if __name__ == "__main__":
     main()
