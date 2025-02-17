@@ -76,6 +76,7 @@ def main():
                     file = remove_text(re.search(re_compiled[r],file)[0],file)
         file = remove_periods(file)
         file = ' '.join(file.split())
+        print(f"Changed to: {file}")
 
 if __name__ == "__main__":
     main()
