@@ -68,9 +68,14 @@ def main():
 
     if os.path.isdir(working_dir):
         os.chdir(working_dir)
-        sample_output(working_dir)
     
-        process_it_all(working_dir)
+    for file in os.curdir():
+        if os.path.isfile(file):
+            for r in range(len(exclude_text)):
+                if re.search(re_compiled[r],file):
+                    file = remove_text(re.search(re_compiled[r],file)[0],file)
+        file = remove_periods(file)
+        file = ' '.join(file.split())
 
 if __name__ == "__main__":
     main()
