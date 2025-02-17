@@ -11,8 +11,8 @@ exclude_text = [
     r'\bExtraTorrentRG\b', r'\btots\b', r'\b1337x\b', r'\bbdrip\b', r'\bac3\b', r'\bKLAXXON\b'
 ]
 print(os.path.abspath("."))
-with open("C:/Users/CJ/iCloudDrive/GitHub/Scripts-2/Auto-Mod_files/list_of_movies.txt","r") as f:
-    file_list = f.readlines()
+# with open("C:/Users/CJ/iCloudDrive/GitHub/Scripts-2/Auto-Mod_files/list_of_movies.txt","r") as f:
+    # file_list = f.readlines()
 
 re_compiled = [re.compile(text_to_exclude,re.IGNORECASE) for text_to_exclude in exclude_text]
 
