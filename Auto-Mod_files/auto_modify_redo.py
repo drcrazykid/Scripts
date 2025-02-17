@@ -68,8 +68,7 @@ def main():
 
     if os.path.isdir(working_dir):
         os.chdir(working_dir)
-    
-    for file in os.curdir():
+    for file in os.listdir(working_dir):
         if os.path.isfile(file):
             for r in range(len(exclude_text)):
                 if re.search(re_compiled[r],file):
