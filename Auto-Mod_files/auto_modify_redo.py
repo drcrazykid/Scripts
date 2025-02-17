@@ -63,7 +63,7 @@ def process_it_all(directory):
 
 def main():
     working_dir = input("Please provide the absolute directory to begin the process: ")
-
+    print(os.listdir(working_dir))
     if os.listdir(working_dir):
         sample_output(working_dir)
     
