@@ -79,7 +79,8 @@ def main():
         file_dict[f]=new_file
     
     for k,v in file_dict.items():
-        os.rename(f"./{k}",f"./v")
+        print(k,v)
+        # os.rename(f"./{k}",f"./v")
 
 if __name__ == "__main__":
     main()
