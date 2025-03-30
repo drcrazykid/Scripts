@@ -45,8 +45,13 @@ def main():
         print(f"[+] New items detected:")
         for file in new_files:
             print(f"[  *  ] - {file}")
+
+        copy_new_items(new_files,SCAN_DIR,BACKUP_DIR)
+        
         tracked_files.update(new_files)
+        
         save_tracked_files(tracked_files)
+        
         print("[+] Copy completed!")
     else:
         print("[-] No new files detected")
