@@ -32,7 +32,7 @@ def copy_new_items(new_items, source, destination):
             shutil.copytree(src_path, dest_path, dirs_exist_ok=True)
         else:
             os.makedirs(os.path.dirname(dest_path),exist_ok=True)
-            shutil.copy2(src_path, dest_path)
+            shutil.copy(src_path, dest_path)
 
 def main():
     tracked_files = load_tracked_files()
@@ -47,7 +47,7 @@ def main():
             print(f"[  *  ] - {file}")
 
         copy_new_items(new_files,SCAN_DIR,BACKUP_DIR)
-        
+
         tracked_files.update(new_files)
         
         save_tracked_files(tracked_files)
