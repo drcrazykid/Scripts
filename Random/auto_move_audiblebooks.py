@@ -42,12 +42,14 @@ def main():
     new_files = current_files - tracked_files
 
     if new_files:
-        print(f"New items detected:")
+        print(f"[+] New items detected:")
         for file in new_files:
-            print(f"{file}")
-
+            print(f"[  *  ] - {file}")
+        tracked_files.update(new_files)
+        save_tracked_files(tracked_files)
+        print("[+] Copy completed!")
     else:
-        print("No new files detected")
+        print("[-] No new files detected")
 
 if __name__ == "__main__":
     main()
