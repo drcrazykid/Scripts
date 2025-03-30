@@ -42,7 +42,10 @@ def main():
     new_files = current_files - tracked_files
 
     if new_files:
-        print(f"New items detected: {new_files}")
+        print(f"New items detected:")
+        for file in new_files:
+            print(f"{file}")
+
     else:
         print("No new files detected")
 
