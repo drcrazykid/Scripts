@@ -9,7 +9,7 @@ def create_csv():
     first = ["John", "Peter", "Suzy", "Becky","Rebecca","Samantha","Walter","Chad","Brian"]
     last = ["White","Brown", "Sanchez","Sandberg","Witherspoon","Jolie","Smithers"]
     rank = ["Amn","A1C","SrA","SSgt","TSgt","MSgt","2LT","1LT","Capt","Maj"]
-    combined = [(f"{l}, {f}", {r}) for f,l,r in itertools.product(first,last, rank)]
+    combined = [(f"{l}, {f}", r) for f,l,r in itertools.product(first, last, rank)]
 
     df = pd.DataFrame(combined, columns=["Name","Rank"])    
     df.to_csv("people.csv", index=False)
@@ -19,9 +19,12 @@ def create_csv():
 def list_of_users(filename):
     df = pd.read_csv(filename)
     users = df.to_dict(orient="records")
-    print(users[1:10])
-
-    return df
+    complete_list = []
+    for u in users:
+        complete_list.append(f"{u['Rank']} {u['Name']}")
+    print(complete_list[:10])
+    
+    return complete_list
 # git lab information
 
 def fill_master_issue(username,default_body_text,labels):
@@ -30,7 +33,8 @@ def fill_master_issue(username,default_body_text,labels):
         "title": f"{username} Master File",
         "description": f"{default_body_text}",
         "labels": f"{labels}",
-        "assignee_id": None
+        "assignee_id": None,
+        "confidential": True
     }
     return master_issue_data
 
@@ -70,14 +74,26 @@ def main():
     TOKEN = ""
 
     HEADERS = {"PRIVATE-TOKEN": TOKEN}
-    default_body_text = "This is the default text that will go into the description. perhaps this could just be in a file by its self, if it is long."
+    
+    PROJ_ID = 68482389
+
+    default_body_text = '''This is the template file for the acocunts. (Include logs, screenshots, or any relevant details.)'''
     default_labels_string = "auto-created, masterfile"
 
-    usersfile = "C:/User/CJ/Documents/GitHub/Scripts/Random/work_related/people.csv"
-    list_of_users(usersfile)
 
+    usersfile = "C:/Users/CJ/Documents/GitHub/Scripts/Random/work_related/people.csv"
+    users = list_of_users(usersfile)
+    x = 0
+
+    while x < 3:
+        issue_data = fill_master_issue(users[x],default_body_text,default_labels_string)
+        
+        submit_issue(GITLAB_URL,HEADERS,PROJ_ID,issue_data)
+
+        time.sleep(1)
+        x += 1
     # proj_test = get_project_id(GITLAB_URL,HEADERS, "gitlab_restructure")
-    PROJ_ID = 68482389
+    
 
 
 
