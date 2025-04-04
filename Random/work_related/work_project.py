@@ -1,7 +1,7 @@
 import pandas as pd 
-import time, itertools, requests, json
+import time, itertools, requests, json, sys
 from random import randint
-
+import certifi
 
 
 # create csv with Last, First, Rank - only for test purposes
@@ -48,9 +48,10 @@ def submit_issue(gitlab_url,header,proj_id,issue_data):
         print(f"[-] Could not create issue for {issue_data['title']}")
 
 # Run this to get the project ID use project name as a 'search'
-def get_project_id(gitlab_url, header, project_name):
-    
-    response = requests.get(f"{gitlab_url}/projects",headers=header,params={"search":project_name})
+def get_project_id(gitlab_url, header, project_name=""):
+    ca_cert_path = "C:/Users/CJ/Documents/GitHub/Scripts/Random/work_related/wildcard2-com-h2.cce.af.mil.crt"
+    # response = requests.get(f"{gitlab_url}/projects",headers=header,verify=False)
+    response = requests.get(f"{gitlab_url}/projects",headers=header,params={"search":project_name},verify=ca_cert_path)
 
     if response.status_code == 200:
         projects = response.json()
@@ -70,12 +71,18 @@ def get_project_id(gitlab_url, header, project_name):
 #
 
 def main():
-    GITLAB_URL = "https://gitlab.com/api/v4/"
+    # GITLAB_URL = "https://gitlab.com/api/v4/"
+    GITLAB_URL = "https://code.levelup.cce.af.mil/api/v4/"
     TOKEN = ""
 
     HEADERS = {"PRIVATE-TOKEN": TOKEN}
     
-    PROJ_ID = 68482389
+    # PROJ_ID = 68482389
+    PROJ_ID = 0
+
+    if TOKEN == "":
+        print("[-] Token is incorrect. Exiting...")
+        sys.exit()
 
     default_body_text = '''This is the template file for the acocunts. (Include logs, screenshots, or any relevant details.)'''
     default_labels_string = "auto-created, masterfile"
@@ -85,14 +92,14 @@ def main():
     users = list_of_users(usersfile)
     x = 0
 
-    while x < 3:
-        issue_data = fill_master_issue(users[x],default_body_text,default_labels_string)
+    while x < len(users):
+        # issue_data = fill_master_issue(users[x],default_body_text,default_labels_string)
         
-        submit_issue(GITLAB_URL,HEADERS,PROJ_ID,issue_data)
+        # submit_issue(GITLAB_URL,HEADERS,PROJ_ID,issue_data)
 
-        time.sleep(1)
+        # time.sleep(1)
         x += 1
-    # proj_test = get_project_id(GITLAB_URL,HEADERS, "gitlab_restructure")
+    proj_test = get_project_id(GITLAB_URL,HEADERS, "gitlab_restructure")
     
 
 
