@@ -8,6 +8,7 @@
         description: Local DNS
         version: 6
         icon: si-pihole
+        key: 
   - Guacamole:
         href: http://guac.casa-blanco.org/#
         icon: si-apacheguacamole
