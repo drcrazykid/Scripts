@@ -1,0 +1,19 @@
+services:
+  velociraptor: 
+  image: docker pull wlambert/velociraptor:latest
+  restart: unless-stopped
+  ports:
+    - '8106:8889'
+    - '8107:8000'
+    - '8108:8001'
+  volumes:
+    - /home/drcrazykid/docker_data/velociraptor:/velociraptor/:rw
+  environment:
+      - VELOX_USER=${VELOX_USER}
+      - VELOX_PASSWORD=${VELOX_PASSWORD}
+      - VELOX_ROLE=${VELOX_ROLE}
+      - VELOX_SERVER_URL=${VELOX_SERVER_URL}
+      - VELOX_FRONTEND_HOSTNAME=${VELOX_FRONTEND_HOSTNAME}
+
+
+

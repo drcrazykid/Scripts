@@ -5,7 +5,8 @@
 - Networking:
   - Pihole:
         href: http://pihole.casa-blanco.org/admin
-        description:
+        description: Local DNS
+        version: 6
         icon: si-pihole
   - Guacamole:
         href: http://guac.casa-blanco.org/#

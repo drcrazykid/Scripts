@@ -1,0 +1,11 @@
+services:
+
+  portainer-agent:
+    container_name: portainer-agent
+    image: portainer/agent
+    ports:
+      - "9001:9001" 
+    volumes:
+      # Mount the host's Docker socket into the container
+      - /var/run/docker.sock:/var/run/docker.sock
+    restart: unless-stopped
