@@ -110,6 +110,7 @@ def main():
                 first = input("Please input first name: ")
                 last = input("Please input last name: ")
                 r = float(input("Please input rating, if known: "))
+    
     file = "C:/Users/CJ/Documents/GitHub/Scripts/Random/tournament/tourney_data.csv"
     data = get_data(file)
     players = load_players(data)
