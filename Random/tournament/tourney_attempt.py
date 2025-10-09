@@ -38,13 +38,22 @@ def load_players(dataframe):
 
 def create_bracket(players):
     random.shuffle(players)
+    has_bye = False
     # print(players)
     if len(players) % 2 !=0:
         print(f"{players[-1].full_name()} gets a bye this round")
+        has_bye = True
         players = players[:-1]
     
+    
+
     matchups = [(players[i], players[i+1]) for i in range(0, len(players), 2)]
     return matchups
+
+def if_bye_player():
+    # add bye player back to next round to continue playing
+
+    return
 
 def play_round(matchups: List[Tuple[Player, Player]]):
     winners = []
