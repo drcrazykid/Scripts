@@ -8,7 +8,7 @@ class Player:
         
         self.rating = dupr
         self.phone_num = phone
-        if player_id == "":
+        if player_id == "" or player_id == None:
             self.unique_id = self.id_gen()
         else:
             self.unique_id = player_id
@@ -37,3 +37,5 @@ class Player:
             self.wins += 1
         elif winorloss == -1:
             self.losses += 1
+
+    
