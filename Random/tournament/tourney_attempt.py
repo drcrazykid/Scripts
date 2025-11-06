@@ -125,6 +125,7 @@ def main():
     players = load_players(data)
     mass_id_gen(data,file)
     # run_tournament(players=players)
+    
 
 if __name__ == "__main__":
     main()
