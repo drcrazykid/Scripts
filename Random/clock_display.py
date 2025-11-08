@@ -1,5 +1,10 @@
 import tkinter as tk
-import time
+import time, psutil, subprocess, os
+
+
+if os.name == 'nt':
+    import wmi
+    print("imported wmi successfully")
 
 
 # basic window configuration
@@ -62,6 +67,12 @@ for x in range(3):
     print(x)
 
 def get_cpu_temp(return_as_string=True):
+    if os.name == "nt":
+        pass
+        
+    else:
+        print(psutil.sensors_temperatures())
+        print(t)
     # place in logic for retrieving cpu temp
     cpu_temp = 104
     if return_as_string:
