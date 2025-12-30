@@ -33,13 +33,14 @@ def sanitize_description(description: str, show_all=False) -> str:
     return sanitized_description
 
 def preload():
+    # Loads in the gitlab token from .env file
     load_dotenv()
     TOKEN = os.getenv("GITLAB_TOKEN")
     HEADERS = {"PRIVATE-TOKEN": TOKEN}
     return TOKEN
 def main():
     t = preload()
-
+    # Need to set ssl_verify to false to bypass CAC authentication
     gl = gitlab.Gitlab(url="https://code.levelup.cce.af.mil",private_token=t,ssl_verify=False)
 
     # issues = gl.issues.list(get_all=True)
@@ -53,20 +54,53 @@ def main():
     dest_proj = gl.projects.get(dest_proj_id)
 
     src_proj_issues = source_proj.issues.list(state="opened",all=True)
-    
-    
-    for i in src_proj_issues:
-        new_i = dest_proj.issues.create({
-            "title": i.title,
-            # NEED TO SANITIZE DESCRIPTION!
-            "description": sanitize_description(i.description),
-            "labels": i.labels,
-            "assignee_ids": [a["id"] for a in i.assignees] if i.assignees else None
+    def migrate():
+        
+        for i in src_proj_issues:
+            new_i = dest_proj.issues.create({
+                "title": i.title,
+                # NEED TO SANITIZE DESCRIPTION!
+                "description": sanitize_description(i.description),
+                "labels": i.labels,
+                "assignee_ids": [a["id"] for a in i.assignees] if i.assignees else None
 
-        })
-        print(i.title)
+            })
+            print(f"Moved {i.title}")
 
-    print(f"Total issues is: {len(src_proj_issues)}") 
+        print(f"Total issues is: {len(src_proj_issues)}") 
+    
+    # Completed migration
+    # 
+    # migrate()
+    # Function to make new issue confidential
+    def build_dest_issue_by_title(d_proj):
+        lookup = {}
+        for issue in d_proj.issues.list(state="opened",all=True):
+            lookup[issue.title] = issue
+        
+        return lookup
+    
+    def make_confidential(d_proj, s_proj):
+        d_lookup = build_dest_issue_by_title(d_proj)
+        s_list = s_proj.issues.list(state="opened",all=True)
+        conf_count = 0
+        titles = []
+        for i in s_list:
+            if not i.confidential:
+                continue
+            d_issue = d_lookup.get(i.title)
+            if not d_issue:
+                continue
+
+            if not d_issue.confidential:
+                d_issue.confidential = True
+                d_issue.save()
+                print(f"Marked confidential: {d_issue.title}")
+                conf_count +=1
+        
+        print(f"Confidential count: {conf_count}")
+
+    # make_confidential(d_proj=dest_proj,s_proj=source_proj)
 
 if __name__ == "__main__":
     main()
