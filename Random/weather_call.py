@@ -2,6 +2,8 @@ import requests, os, json
 from time import sleep
 from dotenv import load_dotenv
 
+# URL for weatherapi.com docs: https://www.weatherapi.com/docs/
+
 load_dotenv()
 KEY = os.getenv("KEY")
 zip = "78253"
