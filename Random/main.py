@@ -1,5 +1,10 @@
-from pynput.keyboard import Key, Listener
 from character import Character
+try:
+     from pynput.keyboard import Key, Listener
+
+except:
+      print("Not running on pi")    
+
 
 def on_press(key):
         print('{0} pressed'.format(key))
