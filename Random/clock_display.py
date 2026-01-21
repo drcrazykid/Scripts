@@ -119,7 +119,7 @@ def main():
 
         
     def update_display():
-        global cached_weather
+        nonlocal cached_weather
 
         # Pulls new weather if available
         while not weather_queue.empty():
