@@ -1,7 +1,7 @@
 import tkinter as tk
-import time, psutil, subprocess, os, requests
+import time, psutil, threading, os, requests
 from dotenv import load_dotenv
-
+from queue import Queue
 def main():
     load_dotenv()
     if os.name == 'nt':
@@ -74,7 +74,10 @@ def main():
         fg = "white"
     )
     last_label.grid(column=low_left[0],row=low_left[1])
-
+    
+    weather_queue = Queue()
+    cached_weather = None
+    
     for x in range(3):
         if x == 0:
             root.grid_columnconfigure(1,weight=1)
@@ -93,7 +96,7 @@ def main():
             c = round((cpu_temp * 5/9) + 32, 1)
         return c
     
-    def get_weather():
+    def fetch_weather():
         KEY = os.getenv("KEY")
         zipcode = "78253"
         url = "http://api.weatherapi.com/v1/current.json"
@@ -103,24 +106,41 @@ def main():
             "q":zipcode,
             "aqi": "no"
             }
-        resp = requests.get(url=url,params=params)
-        print(f"Response Code: {resp.status_code}")
-        info = resp.json()
+        try:
+            resp = requests.get(url=url,params=params, timeout=10)
+            resp.raise_for_status()
+            weather_queue.put(resp.json())
+        except Exception as e:
+            weather_queue.put({"error": str(e)})
 
-        city = info["location"]['name']
-        state = info["location"]["region"]
-        temp = info["current"]["temp_f"]
-        last = info["current"]['last_updated']
+    def schedule_weather_update():
+        threading.Thread(target=fetch_weather, daemon=True).start()
+        root.after(15 * 60 * 1000, schedule_weather_update)        
 
-        weather_strings = []
-        weather_string = f"{city}, {state}: {temp}°F"
-        last = f"Last Updated: {last}"
-        weather_strings.append(weather_string)
-        weather_strings.append(last)
-
-        return weather_strings
         
     def update_display():
+        global cached_weather
+
+        # Pulls new weather if available
+        while not weather_queue.empty():
+            cached_weather = weather_queue.get()
+
+        if cached_weather:
+            if "error" in cached_weather:
+                pass
+            else:
+                info = cached_weather
+                city = info["location"]['name']
+                state = info["location"]["region"]
+                temp = info["current"]["temp_f"]
+                last = info["current"]['last_updated']
+
+                weather_string = f"{city}, {state}: {temp}°F"
+                last = f"Last Updated: {last}"
+
+                temp_label.config(text=weather_string)
+                last_label.config(text=last)
+                
         current_time = time.strftime("%H:%M:%S")
         current_date = time.strftime("%A, %B %d, %Y")
         
@@ -128,8 +148,7 @@ def main():
         date_label.config(text=current_date)
         cpu_label.config(text=f"CPU: {get_cpu_temp()}")
 
-        # temp_label.config(text=get_weather()[0])
-        # last_label.config(text=get_weather()[1])
+        
         root.after(1000, update_display)
         
     def quit_fullscreen(event):
@@ -137,8 +156,8 @@ def main():
         root.destroy()
 
     root.bind("<Escape>", quit_fullscreen)
-    get_weather()
     update_display()
+    schedule_weather_update()
     root.mainloop()
 
 if __name__ == "__main__":
