@@ -50,7 +50,7 @@ def main():
 
     cpu_label = tk.Label(
         root,
-        font= ("Helevica", 14, "bold"),
+        font= ("Helevica", 16, "bold"),
         bg = "black",
         fg = "white"
     )
@@ -59,6 +59,21 @@ def main():
     cpu_label.configure(text="78")
     # root.grid_columnconfigure(0,weight=1)
     # root.grid_rowconfigure(0,weight=1)
+
+    temp_label = tk.Label(
+        root,
+        font = ("Helvetica", 18, "bold"),
+        bg = "black",
+        fg = "white"
+    )
+    temp_label.grid(column=upper_left[0],row=upper_left[1])
+    last_label = tk.Label(
+        root,
+        font = ("Helvetica", 10, "bold"),
+        bg = "black",
+        fg = "white"
+    )
+    last_label.grid(column=low_left[0],row=low_left[1])
 
     for x in range(3):
         if x == 0:
@@ -96,6 +111,14 @@ def main():
         state = info["location"]["region"]
         temp = info["current"]["temp_f"]
         last = info["current"]['last_updated']
+
+        weather_strings = []
+        weather_string = f"{city}, {state}: {temp}°F"
+        last = f"Last Updated: {last}"
+        weather_strings.append(weather_string)
+        weather_strings.append(last)
+
+        return weather_strings
         
     def update_display():
         current_time = time.strftime("%H:%M:%S")
@@ -105,6 +128,8 @@ def main():
         date_label.config(text=current_date)
         cpu_label.config(text=f"CPU: {get_cpu_temp()}")
 
+        # temp_label.config(text=get_weather()[0])
+        # last_label.config(text=get_weather()[1])
         root.after(1000, update_display)
         
     def quit_fullscreen(event):
