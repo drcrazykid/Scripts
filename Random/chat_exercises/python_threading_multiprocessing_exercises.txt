@@ -1,0 +1,106 @@
+LEVEL 1 — Threading Basics (I/O & Timing)
+
+Exercise 1: Background Countdown (Threading) Goal: Run a countdown timer
+in the background while the main program prints dots every second.
+
+Concepts: - threading.Thread - Daemon threads - Non-blocking execution
+
+Constraints: - Countdown sleeps 1 second between numbers - Main loop
+prints “.” every second - Program exits cleanly after countdown finishes
+
+Hint: Use daemon=True and a shared variable or join() (CLI only).
+
+Exercise 2: API Fetcher (Threading + Queue) Goal: Fetch data from 3 URLs
+concurrently and print results as they arrive.
+
+Concepts: - Thread safety - Queue - Avoiding shared state
+
+Constraints: - Use requests - One thread per URL - Main thread prints
+results
+
+Hint: Each worker puts (url, status_code) into a queue.
+
+LEVEL 2 — Scheduling & Control
+
+Exercise 3: Periodic Worker (Threading + Event) Goal: Create a worker
+thread that runs every 5 seconds and stops cleanly when signaled.
+
+Concepts: - threading.Event - Graceful shutdown
+
+Constraints: - No while True without sleep - Must stop within 1 second
+of signal
+
+Hint: Use event.wait(timeout) instead of time.sleep().
+
+Exercise 4: Thread-Safe Counter Goal: Start 10 threads that increment a
+shared counter 1,000 times each.
+
+Concepts: - Race conditions - Lock
+
+Constraints: - Final count must be exactly 10,000
+
+Hint: Protect increments with with lock:.
+
+LEVEL 3 — Multiprocessing Fundamentals
+
+Exercise 5: Parallel Squaring (Multiprocessing) Goal: Square numbers
+1–10 using multiple processes.
+
+Concepts: - multiprocessing.Process - Queue - main guard
+
+Constraints: - One process per number - Results collected in order
+
+Hint: Put (n, n*n) into a queue.
+
+Exercise 6: CPU Stress Test Goal: Compute prime numbers up to 200,000
+using: 1) Single process 2) Multiple processes
+
+Concepts: - GIL impact - Performance comparison
+
+Constraints: - Time both versions - Use time.perf_counter()
+
+Hint: Split the range into chunks per process.
+
+LEVEL 4 — Real-World Patterns
+
+Exercise 7: Producer / Consumer (Multiprocessing) Goal: One process
+produces work items, multiple processes consume them.
+
+Concepts: - Work queues - Process coordination
+
+Constraints: - Producer sends 50 tasks - Consumers process until queue
+empty
+
+Hint: Use None as a sentinel value.
+
+Exercise 8: Hybrid Model (Threading + Multiprocessing) Goal: Thread
+fetches data from an API, process crunches the data, main thread prints
+results.
+
+Concepts: - Hybrid concurrency models - Separation of concerns
+
+Constraints: - Thread never blocks process - Process never touches
+thread state
+
+Hint: Thread → Queue → Process → Queue → Main
+
+LEVEL 5 — Tkinter-Safe Challenge (Advanced)
+
+Exercise 9: Background Weather App (Threading) Goal: Tkinter app that
+updates clock every second and fetches weather every 15 minutes without
+freezing.
+
+Concepts: - Tkinter after() - Thread communication - UI thread safety
+
+Constraints: - No widget updates in threads - Use Queue
+
+Hint: UI polls the queue inside after().
+
+Exercise 10: Cancelable Long Task (Event + Thread) Goal: Start a
+long-running task and allow it to be canceled safely.
+
+Concepts: - Cooperative cancellation - threading.Event
+
+Constraints: - Must stop within 2 seconds - No force killing threads
+
+Hint: Check event.is_set() frequently.
