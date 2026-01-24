@@ -15,6 +15,11 @@ from multiprocessing import Process, Queue
 
 q = Queue()
 sol = None
+
+'''
+big note is child processes can't read from nested functions and only some @staticmethods from
+classes
+'''
 def square_worker(num:int,que:Queue):
     que.put(f"({num},{num*num})")
     print(__name__)
