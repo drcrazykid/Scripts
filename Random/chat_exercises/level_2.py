@@ -11,7 +11,7 @@ of signal
 
 Hint: Use event.wait(timeout) instead of time.sleep().
 '''
-from threading import Thread, Event
+from threading import Thread, Event, Lock
 import os
 
 def ex_3():
@@ -38,10 +38,38 @@ def ex_3():
         t.join()
         print("Main thread exiting cleanly")
     
+'''
+Exercise 4: Thread-Safe Counter Goal: Start 10 threads that increment a
+shared counter 1,000 times each.
 
+Concepts: - Race conditions - Lock
+
+Constraints: - Final count must be exactly 10,000
+
+Hint: Protect increments with with lock:.
+'''
 
 def ex_4():
-    pass
+    l = Lock()
+    MAX_INC = 1_000
+    counter = 0
+
+    def incrementer():
+        nonlocal counter
+        for _ in range(MAX_INC):
+            with l:
+                counter +=1
+    
+    threads = []
+    for x in range(10):
+        t = Thread(target=incrementer,name=f"Thread_{x}")
+        threads.append(t)
+        t.start()
+        print(f"[+] Started {t.name}")
+    
+    for t in threads:
+        t.join()
+    print("Final counter value:",counter)
 
 def clear_screen():
     os.system('cls' if os.name == 'nt' else 'clear')
