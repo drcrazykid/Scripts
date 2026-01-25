@@ -41,4 +41,4 @@ class PrimeBenchmark:
         queue = Queue()
     
     def _make_chunks(self):
-        
+        pass
