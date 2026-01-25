@@ -9,6 +9,7 @@ Constraints: - Time both versions - Use time.perf_counter()
 Hint: Split the range into chunks per process.
 '''
 from multiprocessing import Process,Queue
+from primebenchmark import PrimeBenchmark
 import time
 
 def is_prime(n):
@@ -19,33 +20,28 @@ def is_prime(n):
             return False
     return True
 
-def compute_primes(start:int, end:int,queue:Queue,chunk_size=1,multiprocess=False):
+def compute_primes(start:int, end:int,queue:Queue=None):
     primes = []
 
-    if not multiprocess:
-        
-        for x in range(start,end):
-            if is_prime(x):
-                primes.append(x)
-        
+    for x in range(start,end):
+        if is_prime(x):
+            primes.append(x)
+    if not None:
         queue.put(primes)
-    else:    
-        pass
+
 def main():
     que = Queue()
     holder = None
-    start = time.perf_counter()
-
-    compute_primes(0,200_000,que)
-
-    stop = time.perf_counter()
-    single_time = round(stop-start,5)
+    pb = PrimeBenchmark(0,200_001)
+    
+    single_time, primes = pb.run_single()
+    
     print(f"Single Process Total time: {single_time} seconds")
 
     # Multiprocessing way
 
     procs = []
-    chunks = [(0,49_999),(50_000,99_999),(100_000,149_999),(150_000,200_000)]
+    chunks = [(0,50_000),(50_000,100_000),(100_000,150_000),(150_000,200_001)]
 
     start = time.perf_counter()
 
@@ -57,11 +53,12 @@ def main():
 
     final_primes = []
     for p in procs:
-        if not que.empty():
-            holder = que.get()
+        holder = que.get()
         
         for x in holder:
             final_primes.append(x)    
+    
+    for p in procs:
         p.join()
     stop = time.perf_counter()
 
