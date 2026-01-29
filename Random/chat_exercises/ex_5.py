@@ -22,7 +22,7 @@ classes
 '''
 def square_worker(num:int,que:Queue):
     que.put(f"({num},{num*num})")
-    print(__name__)
+    # print(__name__)
     # print(f"({num},{num*num})")
 if __name__ == "__main__":
     
