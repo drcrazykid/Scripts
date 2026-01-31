@@ -21,7 +21,7 @@ big note is child processes can't read from nested functions and only some @stat
 classes
 '''
 def square_worker(num:int,que:Queue):
-    que.put(f"({num},{num*num})")
+    que.put(f"(Number: {num},Squared: {num*num})")
     # print(__name__)
     # print(f"({num},{num*num})")
 if __name__ == "__main__":
